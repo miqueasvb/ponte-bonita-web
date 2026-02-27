@@ -1,1 +1,21 @@
 
+backend:
+  name: git-gateway
+  branch: main # Asegúrate de que tu rama se llame 'main' o cámbialo por 'master'
+
+media_folder: "assets/images/productos"
+public_folder: "/assets/images/productos"
+
+collections:
+  - name: "productos"
+    label: "Joyas"
+    folder: "content/productos"
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    fields:
+      - {label: "Nombre del Producto", name: "title", widget: "string"}
+      - {label: "Precio", name: "price", widget: "number", value_type: "float"}
+      - {label: "Imagen", name: "image", widget: "image"}
+      - {label: "Sección Principal", name: "section", widget: "select", options: ["Acero Blanco", "Acero Dorado"]}
+      - {label: "Categoría", name: "category", widget: "select", options: ["Anillos", "Pulseras", "Collares", "Aritos", "Cintos", "Kids", "Hombres"]}
+      - {label: "Fecha de carga", name: "date", widget: "datetime"}
