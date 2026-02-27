@@ -1,0 +1,745 @@
+<!DOCTYPE html>
+<html lang="es-ES" dir="ltr">
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link href="https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900&display=swap" rel="stylesheet">
+
+    <title>Ponte Bonita - Accesorios</title>
+
+
+    <!-- Additional CSS Files -->
+    <link rel="stylesheet" type="text/css" href="assets/css/bootstrap.min.css">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha512-..." crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <link rel="stylesheet" href="assets/css/templatemo-hexashop.css">
+
+    <link rel="stylesheet" href="assets/css/owl-carousel.css">
+
+    <link rel="stylesheet" href="assets/css/lightbox.css">
+
+
+    <link rel="icon" type="image/x-icon" href="assets/images/favicon.ico">
+
+    
+<style>
+  .image-divider {
+    width: 100%;
+    text-align: center;
+    margin: 30px 0; /* O el valor que prefieras */
+  }
+  .image-divider img {
+    max-width: 800px;
+    width: 20%; /* Ancho para PC */
+    height: auto;
+  }
+
+  /* Media query para pantallas más pequeñas (móviles) */
+  @media (max-width: 768px) {
+    .image-divider img {
+      width: 100%; /* La imagen ocupará todo el ancho disponible */
+      max-width: 300px; /* Puedes ajustar este valor si quieres que la imagen sea más pequeña en móviles */
+    }
+  }
+
+
+
+    /* ... tus otros estilos ... */
+
+  .wide-banner .right-first-image img {
+    height: 383px; /* Puedes ajustar esta altura a tu gusto */
+    object-fit: cover;
+    width: 100%;
+  }
+
+      /* Estilos para la galería de imágenes en PC (dos columnas) */
+    #contenedor-galeria {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 15px;
+        justify-content: center;
+    }
+
+    .galeria-imagen {
+        border-radius: 10px;
+        object-fit: cover;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        width: 100%;
+        height: 100%;
+        transition: transform 0.2s ease;
+    }
+
+    /* Media Query para CELULARES (menos de 768px de ancho) */
+    @media (max-width: 768px) {
+        #contenedor-galeria {
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+        }
+    }
+
+  
+/* Estilos Hero Rubit Studios */
+.pb-hero-section {
+    padding: 180px 0 100px 0;
+    background-color: #fdfaf8; /* Un tono crema muy cálido */
+    min-height: 90vh;
+    display: flex;
+    align-items: center;
+}
+
+.pb-hero-content {
+    padding-right: 30px;
+}
+
+.pb-title {
+    font-size: 5rem;
+    font-weight: 700;
+    color: #2d2d2d;
+    margin-bottom: 10px;
+    letter-spacing: -1px;
+}
+
+.pb-slogan {
+    font-size: 1.5rem;
+    color: #8a7b75;
+    font-style: italic;
+    margin-bottom: 40px;
+}
+
+.pb-btn-sobremi {
+    display: inline-block;
+    padding: 15px 45px;
+    background-color: #333;
+    color: #fff !important;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+}
+
+.pb-btn-sobremi:hover {
+    background-color: #555;
+    transform: translateY(-3px);
+}
+
+/* Grilla de Colecciones */
+.pb-collections-grid {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 30px;
+}
+
+.pb-collection-card {
+    flex: 1;
+    position: relative;
+    aspect-ratio: 1 / 1; /* Esto hace que sean cuadrados perfectos */
+    border-radius: 20px;
+    overflow: hidden;
+    cursor: pointer;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.05);
+}
+
+.pb-collection-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.pb-card-overlay {
+    position: absolute;
+    bottom: 0; left: 0; width: 100%;
+    padding: 25px;
+    background: linear-gradient(transparent, rgba(0,0,0,0.6));
+    color: #fff;
+}
+
+.pb-card-overlay span {
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.pb-card-overlay h3 {
+    font-size: 1.5rem;
+    margin: 0;
+}
+
+.pb-collection-card:hover img {
+    transform: scale(1.1);
+}
+
+/* Instagram Minimalista */
+.pb-instagram-minimal {
+    text-align: right;
+}
+
+.pb-instagram-minimal a {
+    color: #8a7b75;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+    transition: color 0.3s;
+}
+
+.pb-instagram-minimal a i {
+    margin-right: 8px;
+    font-size: 18px;
+}
+
+.pb-instagram-minimal a:hover {
+    color: #333;
+}
+
+/* Responsive */
+@media (max-width: 991px) {
+    .pb-hero-section { padding-top: 120px; text-align: center; }
+    .pb-hero-content { margin-bottom: 50px; padding-right: 0; }
+    .pb-title { font-size: 3.5rem; }
+    .pb-collections-grid { flex-direction: column; }
+    .pb-instagram-minimal { text-align: center; }
+}
+
+
+
+/* Franja Horizontal de Instagram */
+.pb-instagram-full-width {
+    display: block;
+    width: 100%;
+    background-color: #f2e8e4; /* Un tono nude cálido que combina con el fondo */
+    padding: 22px;
+    border-radius: 20px; /* Misma curvatura que los cuadrados superiores */
+    text-decoration: none !important;
+    transition: all 0.3s ease;
+    border: 1px solid rgba(168, 142, 134, 0.1);
+    margin-top: 5px; /* Pequeño ajuste para separarse de los cuadrados */
+}
+
+.pb-ig-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    color: #8a7b75; /* El mismo color que usaste en el slogan */
+}
+
+.pb-ig-content i {
+    font-size: 24px;
+}
+
+.pb-ig-content span {
+    font-size: 16px;
+    letter-spacing: 0.5px;
+}
+
+.pb-instagram-full-width:hover {
+    background-color: #ebe0dc;
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+}
+
+/* Ajuste para que se vea bien en móviles */
+@media (max-width: 768px) {
+    .pb-ig-content {
+        flex-direction: column;
+        gap: 5px;
+        text-align: center;
+    }
+    .pb-ig-content span {
+        font-size: 14px;
+    }
+}
+
+.pb-header-img {
+    width: 100%;
+    height: 300px; /* Altura fija para que no sea gigante */
+    object-fit: cover;
+    border-radius: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+}
+
+.pb-hero-section {
+    padding: 180px 0 100px 0;
+    background: linear-gradient(to right, rgba(253, 250, 248, 0.9), rgba(253, 250, 248, 0.7)), 
+                url('assets/images/header.png');
+    background-size: cover;
+    background-position: center;
+    min-height: 90vh;
+    display: flex;
+    align-items: center;
+}
+
+</style>
+
+    </head>
+    
+    <body>
+    
+    <!-- ***** Preloader Start ***** -->
+    <div id="preloader">
+        <div class="jumper">
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+    </div>  
+    <!-- ***** Preloader End ***** -->
+    
+    
+<header class="header-area header-sticky">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <nav class="main-nav">
+<a href="index.html" class="logo">
+    <img src="assets/images/logohd.png" alt="Ponte Bonita Logo">
+</a>
+<ul class="nav">
+    <li><a href="#top" class="active">Inicio</a></li>
+    <li><a href="#bio">Sobre mí</a></li>
+    <li><a href="#contact">Contacto</a></li>
+    <li>
+        <a href="https://www.instagram.com/pontebonita__accesorios_/" target="_blank">
+            <i class="fab fa-instagram"></i> 
+            <span class="text-mobile-only">Instagram</span>
+        </a>
+    </li>
+    <li>
+        <a href="https://wa.me/5493644247351" target="_blank">
+            <i class="fab fa-whatsapp"></i> 
+            <span class="text-mobile-only">WhatsApp</span>
+        </a>
+    </li>
+</ul>        
+                    <a class='menu-trigger'>
+                        <span>Menu</span>
+                    </a>
+                    </nav>
+            </div>
+        </div>
+    </div>
+</header>
+
+<section class="pb-hero-section" id="top">
+    <div class="container">
+<div class="row align-items-center">
+    <div class="col-lg-5">
+        <div class="pb-hero-content">
+            <h1 class="pb-title">Ponte Bonita</h1>
+            <p class="pb-slogan">"Detalles que iluminan tu esencia"</p>
+            <a href="#bio" class="pb-btn-sobremi scroll-to-section">Sobre mí</a>
+        </div>
+    </div>
+
+            <div class="col-lg-7">
+                <div class="pb-collections-grid">
+                    <div class="pb-collection-card" onclick="abrirGaleria('blanco')">
+                        <img src="assets/images/acero blanco.png" alt="Acero Blanco">
+                        <div class="pb-card-overlay">
+                            <span>Joyas en</span>
+                            <h3>Acero Blanco</h3>
+                        </div>
+                    </div>
+                    <div class="pb-collection-card" onclick="abrirGaleria('dorado')">
+                        <img src="assets/images/acero dorado.png" alt="Acero Dorado">
+                        <div class="pb-card-overlay">
+                            <span>Joyas en</span>
+                            <h3>Acero Dorado</h3>
+                        </div>
+                    </div>
+                </div>
+                
+<a href="https://www.instagram.com/pontebonita__accesorios_/" target="_blank" class="pb-instagram-full-width">
+    <div class="pb-ig-content">
+        <i class="fab fa-instagram"></i>
+        <span>Sígueme en instagram <strong>@pontebonita__accesorios_</strong></span>
+    </div>
+</a>
+
+        </div>
+    </div>
+</section>
+
+
+<!-- ***** Bio Area Start ***** -->
+<section class="section" id="bio" style="background:#ffffff; padding:80px 0;">
+  <div class="container">
+    <div class="row align-items-center">
+      
+      <!-- Imagen Bio -->
+      <div class="col-lg-6 mb-4 mb-lg-0 text-center">
+        <img src="assets/images/pontebonitaccesorys.jpg" alt="Ponte Bonita - Bio" 
+          style="max-width:80%; border-radius:20px; box-shadow:0 6px 18px rgba(0,0,0,0.1);">
+      </div>
+      
+      <!-- Texto Bio -->
+      <div class="col-lg-6">
+        <div class="bio-content" style="color:#555;">
+          <h2 style="font-family:'Poppins', sans-serif; font-weight:500; color:#333; margin-bottom:20px;">
+            Sobre mí
+          </h2>
+          <p style="line-height:1.8; font-size:16px; margin-bottom:20px;">
+            Soy <strong>Barbi</strong>, la creadora de <em>Ponte Bonita - Accesorios</em>.  
+            Me encanta realzar la belleza de cada persona a través de joyas únicas y con mucho estilo 💎
+          </p>
+          <p style="line-height:1.8; font-size:16px; margin-bottom:25px;">
+En mi espacio vas a encontrar accesorios pensados para que te sientas más linda, segura y especial en tu día a día, ya sea con algo delicado, elegante o con ese toque que resalta tu personalidad.
+Porque mi lema es simple: cuando te ves bien, te sentís mejor. 💕
+          </p>
+          <div class="main-border-button">
+            <a href="#contact">Hablemos</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+<!-- ***** Bio Area End ***** -->
+
+<!-- Línea separadora punteada -->
+<div class="image-divider">
+  <img src="assets/images/imgdiv.png" alt="Separador floral de Ponte Bonita">
+</div>
+
+<!-- ***** Mensaje Especial Start ***** -->
+<section class="section" id="mensaje" style="background:#fff; padding:60px 0;">
+  <div class="container text-center">
+    <h3 style="font-family:'Poppins', serif; font-weight:400; color:#444; margin-bottom:15px;">
+      “Pequeños detalles que iluminan grandes momentos”
+    </h3>
+    <p style="font-size:16px; color:#666; max-width:600px; margin:0 auto;">
+      Cada pieza está pensada con cariño, para que siempre lleves algo especial con vos.
+    </p>
+    <hr style="width:80px; border:1px solid #ddd; margin:30px auto 0 auto;">
+  </div>
+</section>
+<!-- ***** Mensaje Especial End ***** -->
+
+
+
+
+<!-- ***** Contacto ***** -->
+<section class="contact-area" id="contact" style="background:#fafafa; padding:60px 0;">
+  <div class="container text-center">
+    <h2 style="font-weight:500; color:#444; margin-bottom:15px;">Escribime 💌</h2>
+    <p style="color:#666; max-width:500px; margin:0 auto 30px auto; line-height:1.6;">
+      Soy Barbi, la persona detrás de Ponte Bonita.  
+      Si tenés una consulta o simplemente querés charlar sobre algún detalle,  
+      me va a encantar leerte ✨
+    </p>
+
+<form id="contact-form" action="https://formsubmit.co/pontebonitabarbi@gmail.com" method="POST" style="max-width:600px; margin:0 auto;">
+  <!-- Opcional: desactiva captcha -->
+  <input type="hidden" name="_captcha" value="false">
+  <!-- Opcional: redirige a página de gracias -->
+  <input type="hidden" name="_next" value="https://www.accesoriospontebonita.com.ar/gracias.html">
+
+  <div class="row">
+    <div class="col-lg-6 mb-3">
+      <input type="text" name="name" class="form-control" placeholder="Tu nombre" required>
+    </div>
+    <div class="col-lg-6 mb-3">
+      <input type="email" name="email" class="form-control" placeholder="Tu email" required>
+    </div>
+    <div class="col-12 mb-3">
+      <textarea name="message" rows="4" class="form-control" placeholder="Tu mensaje..." required></textarea>
+    </div>
+    <div class="col-12">
+      <button type="submit" class="btn btn-dark px-4 py-2" style="border-radius:30px;">
+        Enviar <i class="fa fa-paper-plane"></i>
+      </button>
+    </div>
+  </div>
+</form>
+
+  </div>
+</section>
+<!-- ***** Contacto End ***** -->
+
+    
+<!-- ***** Footer Start ***** -->
+<footer style="background:#222; color:#fff; padding:50px 0 20px 0; font-size:15px;">
+  <div class="container text-center">
+
+    <!-- Logo + frase -->
+<div class="mb-4">
+    <img src="assets/images/white-logohd.png" alt="Ponte Bonita" class="footer-logo"> <p style="color:#ccc; font-size:14px; max-width:400px; margin:0 auto;">
+      <p style="color:#ccc; font-size:14px; max-width:400px; margin:0 auto;">
+        “Detalles que iluminan tu esencia ✨”
+      </p>
+    </div>
+
+    <!-- Contacto rápido -->
+    <ul style="list-style:none; padding:0; margin:0 0 20px 0; color:#ccc;">
+      <li><i class="fa fa-envelope"></i> pontebonitabarbi@gmail.com</li>
+      <li><i class="fa fa-phone"></i> +54 9 3644-247351</li>
+    </ul>
+
+    <!-- Redes sociales -->
+<div class="social-icons mb-3">
+  <a href="https://www.instagram.com/pontebonita__accesorios_/" target="_blank" style="color:#fff; font-size:22px; margin:0 10px;">
+    <i class="fab fa-instagram"></i>
+  </a>
+  <a href="https://wa.me/5493644247351" target="_blank" style="color:#fff; font-size:22px; margin:0 10px;">
+    <i class="fab fa-whatsapp"></i>
+  </a>
+</div>
+
+    <!-- Copyright -->
+    <p style="color:#777; font-size:13px; margin-top:20px;">
+      © 2025 Copyright · Ponte Bonita · Hecho con amor 💕
+    </p>
+
+    <!-- Página desarrollada -->
+    <p style="color:#999; font-size:13px; margin-top:10px;">
+      Página desarrollada por 
+      <a href="https://wa.me/5493644247775" target="_blank" style="color:#fff; text-decoration:none; font-weight:600;">
+        Miqueas Vico
+      </a>
+    </p>
+
+  </div>
+</footer>
+<!-- ***** Footer End ***** -->
+
+
+    
+
+    <!-- jQuery -->
+    <script src="assets/js/jquery-2.1.0.min.js"></script>
+
+    <!-- Bootstrap -->
+    <script src="assets/js/popper.js"></script>
+    <script src="assets/js/bootstrap.min.js"></script>
+
+    <!-- Plugins -->
+    <script src="assets/js/owl-carousel.js"></script>
+    <script src="assets/js/accordions.js"></script>
+    <script src="assets/js/datepicker.js"></script>
+    <script src="assets/js/scrollreveal.min.js"></script>
+    <script src="assets/js/waypoints.min.js"></script>
+    <script src="assets/js/jquery.counterup.min.js"></script>
+    <script src="assets/js/imgfix.min.js"></script> 
+    <script src="assets/js/slick.js"></script> 
+    <script src="assets/js/lightbox.js"></script> 
+    <script src="assets/js/isotope.js"></script> 
+    
+    <!-- Global Init -->
+    <script src="assets/js/custom.js"></script>
+
+    <script>
+
+        $(function() {
+            var selectedClass = "";
+            $("p").click(function(){
+            selectedClass = $(this).attr("data-rel");
+            $("#portfolio").fadeTo(50, 0.1);
+                $("#portfolio div").not("."+selectedClass).fadeOut();
+            setTimeout(function() {
+              $("."+selectedClass).fadeIn();
+              $("#portfolio").fadeTo(50, 1);
+            }, 500);
+                
+            });
+        });
+
+    </script>
+
+<!-- ***** Botón flotante de WhatsApp ***** -->
+<a href="https://wa.me/5493644247351" class="whatsapp-float" target="_blank">
+  <i class="fa fa-whatsapp"></i>
+</a>
+
+<style>
+.whatsapp-float {
+  position: fixed;
+  width: 55px;
+  height: 55px;
+  bottom: 20px;
+  right: 20px;
+  background-color: #25d366; /* Verde WhatsApp */
+  color: #fff !important;   /* fuerza el color blanco */
+  border-radius: 50%;
+  text-align: center;
+  font-size: 28px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.2s ease-in-out;
+  text-decoration: none; /* quita subrayado por defecto */
+}
+
+.whatsapp-float i {
+  color: #fff !important; /* asegura ícono blanco */
+}
+
+.whatsapp-float:hover {
+  transform: scale(1.1);  /* solo efecto zoom */
+  background-color: #25d366; /* mismo verde */
+}
+
+</style>
+
+
+<!-- Modal Galería -->
+<div id="modal-galeria" style="display:none;position:fixed;top:0;left:0;width:100%;height:100%;
+  background:rgba(0,0,0,0.8);z-index:2000;overflow:auto;padding-bottom: 50px;">
+  
+  <div style="position:relative;max-width:1000px;margin:50px auto;background:#fff;
+    border-radius:12px;padding:20px;">
+    
+    <span onclick="cerrarGaleria()" style="position:absolute;top:10px;right:20px;
+      font-size:30px;cursor:pointer;font-weight:bold;color:#333;">&times;</span>
+    
+    <h2 id="titulo-galeria" style="text-align:center;margin-bottom:5px;"></h2>
+    <hr style="width:50px; border:2px solid #ccc; margin:5px auto;">
+    <p id="subtitulo-galeria" style="text-align:center; color:#555; margin-bottom:20px;"></p>
+    
+    <div id="contenedor-botones-categorias" style="text-align: center; margin-bottom: 20px;"></div>
+
+    <div id="contenedor-galeria" style="display:flex;flex-wrap:wrap;gap:15px;justify-content:center;"></div>
+  </div>
+</div>
+
+
+
+<script>
+const carpetas = {
+  blanco: {
+    anillos: "1Niv9Dw49gwQC5GthigSYHZQy-Vi-fTAA",
+    pulseras: "1o8I55HMfaqmGdio-4EzHM6BB8dcAKrIj",
+    collares: "1rdt8SIS6N6uyMO9LawPqjISqtrgbPD3z",
+    aritos: "11DSTsGAvWHH0W0M5h-fzxns02dtf1-Ko",
+    cintos: "1VrFkYf-0L06FoOcssXfZHv-0NOGMJDxK",
+    kids: "1fvBhmkofQZHQV1ztLZE_3_siJGXn0iFa"
+  },
+  dorado: {
+    anillos: "1c_o4bedXpXBszfNn2Bols5ls01Ja7xxj",
+    pulseras: "1BWGTrVtfzhYXZX9EY9hYoVOJXPna07Os",
+    collares: "1DslhfJ_5F_Ka7fLratbITpZEc6zp39AD",
+    aritos: "1-fYbHGURZaXexEizcRkEniKKBAVysJ-a",
+    cintos: "1lj2qu8Jj_ic0YLEUK_f4bmn8ciFdDfsC",
+    kids: "15yzlp7yKKTtZCHr1WE790Y1x51hSSbft"
+  }
+};
+const apiKey = "AIzaSyBJR8kMv_mWdI1rCVUWpLzLcz5ntE0ehoQ"; // <-- tu API Key de Google
+let tipoActual = ''; // Variable para guardar el tipo de colección (blanco o dorado)
+
+// Función principal para abrir la galería y mostrar los botones
+function abrirGaleria(tipo) {
+    tipoActual = tipo; // Guardar el tipo seleccionado
+    
+    // Generar el HTML de los botones
+    let htmlBotones = `
+<style>
+    /* Estilos generales para el contenedor y los botones */
+    #contenedor-botones-categorias {
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    .btn-categoria {
+        display: inline-block;
+        padding: 12px 25px;
+        margin: 5px;
+        font-size: 16px;
+        font-weight: 500;
+        color: #fff;
+        background-color: #333;
+        border: none;
+        border-radius: 30px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+    
+    .btn-categoria:hover {
+        background-color: #555;
+    }
+
+    /* Media Query para CELULARES */
+    @media (max-width: 768px) {
+        #contenedor-botones-categorias {
+            display: grid; /* Cambia a un diseño de cuadrícula */
+            grid-template-columns: repeat(2, 1fr); /* Crea 2 columnas de igual tamaño */
+            gap: 10px; /* Espacio entre los botones */
+            padding: 0 10px; /* Espacio en los costados */
+        }
+
+        .btn-categoria {
+            width: 100%; /* El botón ocupa todo el ancho de su columna */
+            margin: 0; /* Elimina el margen para que el 'gap' funcione mejor */
+        }
+    }
+</style>
+        <button class="btn-categoria" onclick="mostrarProductos('anillos')">Anillos</button>
+        <button class="btn-categoria" onclick="mostrarProductos('pulseras')">Pulseras</button>
+        <button class="btn-categoria" onclick="mostrarProductos('collares')">Collares</button>
+        <button class="btn-categoria" onclick="mostrarProductos('aritos')">Aritos</button>
+        <button class="btn-categoria" onclick="mostrarProductos('cintos')">Cintos</button>
+        <button class="btn-categoria" onclick="mostrarProductos('kids')">Kids</button>
+
+    `;
+
+    // Insertar los botones en su contenedor
+    document.getElementById("contenedor-botones-categorias").innerHTML = htmlBotones;
+    
+    // Limpiar el contenedor de imágenes y actualizar títulos
+    document.getElementById("contenedor-galeria").innerHTML = '';
+    document.getElementById("titulo-galeria").innerText = (tipo === "blanco") ? "Joyas de Acero Blanco" : "Joyas de Acero Dorado";
+    document.getElementById("subtitulo-galeria").innerText = "Selecciona una categoría para ver los productos";
+    
+    // Mostrar el modal
+    document.getElementById("modal-galeria").style.display = "block";
+}
+
+// Función para mostrar las imágenes de una categoría específica
+async function mostrarProductos(categoria) {
+  const carpetaId = carpetas[tipoActual][categoria];
+  const url = `https://www.googleapis.com/drive/v3/files?q='${carpetaId}'+in+parents&key=${apiKey}&fields=files(id,name,mimeType)`;
+  
+  const res = await fetch(url);
+  const data = await res.json();
+
+  let html = "";
+  data.files.forEach(file => {
+    if (file.mimeType.startsWith("image/")) {
+      const imgUrl = `https://drive.google.com/thumbnail?id=${file.id}&sz=w1000`;
+html += `<img src="${imgUrl}" class="galeria-imagen" 
+      onmouseover="this.style.transform='scale(1.05)'" 
+      onmouseout="this.style.transform='scale(1)'">`;
+    }
+  });
+
+  // Insertar solo las imágenes en el contenedor de galería
+  document.getElementById("contenedor-galeria").innerHTML = html;
+  document.getElementById("subtitulo-galeria").innerText = "Productos en " + categoria.charAt(0).toUpperCase() + categoria.slice(1);
+}
+
+// Función para cerrar modal
+function cerrarGaleria() {
+  document.getElementById("modal-galeria").style.display = "none";
+}
+
+// Cerrar modal al hacer clic fuera del contenido
+document.getElementById("modal-galeria").addEventListener("click", function(e) {
+  if (e.target.id === "modal-galeria") {
+    cerrarGaleria();
+  }
+});
+</script>
+
+
+
+
+  </body>
+</html>
