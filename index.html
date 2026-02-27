@@ -614,127 +614,117 @@ Porque mi lema es simple: cuando te ves bien, te sentís mejor. 💕
 
 
 <script>
-const carpetas = {
-  blanco: {
-    anillos: "1Niv9Dw49gwQC5GthigSYHZQy-Vi-fTAA",
-    pulseras: "1o8I55HMfaqmGdio-4EzHM6BB8dcAKrIj",
-    collares: "1rdt8SIS6N6uyMO9LawPqjISqtrgbPD3z",
-    aritos: "11DSTsGAvWHH0W0M5h-fzxns02dtf1-Ko",
-    cintos: "1VrFkYf-0L06FoOcssXfZHv-0NOGMJDxK",
-    kids: "1fvBhmkofQZHQV1ztLZE_3_siJGXn0iFa"
-  },
-  dorado: {
-    anillos: "1c_o4bedXpXBszfNn2Bols5ls01Ja7xxj",
-    pulseras: "1BWGTrVtfzhYXZX9EY9hYoVOJXPna07Os",
-    collares: "1DslhfJ_5F_Ka7fLratbITpZEc6zp39AD",
-    aritos: "1-fYbHGURZaXexEizcRkEniKKBAVysJ-a",
-    cintos: "1lj2qu8Jj_ic0YLEUK_f4bmn8ciFdDfsC",
-    kids: "15yzlp7yKKTtZCHr1WE790Y1x51hSSbft"
-  }
-};
-const apiKey = "AIzaSyBJR8kMv_mWdI1rCVUWpLzLcz5ntE0ehoQ"; // <-- tu API Key de Google
-let tipoActual = ''; // Variable para guardar el tipo de colección (blanco o dorado)
+// Configuración de acceso al contenido de GitHub
+// IMPORTANTE: Cambia estos dos valores por los tuyos
+const USER_GITHUB = "TU_USUARIO_DE_GITHUB"; 
+const REPO_GITHUB = "NOMBRE_DE_TU_REPOSITORIO";
 
-// Función principal para abrir la galería y mostrar los botones
+let tipoActual = ''; 
+
+// 1. Función para abrir la galería y mostrar botones
 function abrirGaleria(tipo) {
-    tipoActual = tipo; // Guardar el tipo seleccionado
+    tipoActual = tipo; // 'blanco' o 'dorado'
     
-    // Generar el HTML de los botones
     let htmlBotones = `
-<style>
-    /* Estilos generales para el contenedor y los botones */
-    #contenedor-botones-categorias {
-        text-align: center;
-        margin-bottom: 20px;
-    }
-
-    .btn-categoria {
-        display: inline-block;
-        padding: 12px 25px;
-        margin: 5px;
-        font-size: 16px;
-        font-weight: 500;
-        color: #fff;
-        background-color: #333;
-        border: none;
-        border-radius: 30px;
-        cursor: pointer;
-        transition: background-color 0.3s ease;
-    }
-    
-    .btn-categoria:hover {
-        background-color: #555;
-    }
-
-    /* Media Query para CELULARES */
-    @media (max-width: 768px) {
-        #contenedor-botones-categorias {
-            display: grid; /* Cambia a un diseño de cuadrícula */
-            grid-template-columns: repeat(2, 1fr); /* Crea 2 columnas de igual tamaño */
-            gap: 10px; /* Espacio entre los botones */
-            padding: 0 10px; /* Espacio en los costados */
-        }
-
-        .btn-categoria {
-            width: 100%; /* El botón ocupa todo el ancho de su columna */
-            margin: 0; /* Elimina el margen para que el 'gap' funcione mejor */
-        }
-    }
-</style>
-        <button class="btn-categoria" onclick="mostrarProductos('anillos')">Anillos</button>
-        <button class="btn-categoria" onclick="mostrarProductos('pulseras')">Pulseras</button>
-        <button class="btn-categoria" onclick="mostrarProductos('collares')">Collares</button>
-        <button class="btn-categoria" onclick="mostrarProductos('aritos')">Aritos</button>
-        <button class="btn-categoria" onclick="mostrarProductos('cintos')">Cintos</button>
-        <button class="btn-categoria" onclick="mostrarProductos('kids')">Kids</button>
-
+        <style>
+            .btn-categoria {
+                display: inline-block; padding: 12px 25px; margin: 5px;
+                font-size: 16px; font-weight: 500; color: #fff;
+                background-color: #333; border: none; border-radius: 30px;
+                cursor: pointer; transition: background-color 0.3s ease;
+            }
+            .btn-categoria:hover { background-color: #555; }
+            @media (max-width: 768px) {
+                #contenedor-botones-categorias {
+                    display: grid; grid-template-columns: repeat(2, 1fr);
+                    gap: 10px; padding: 0 10px;
+                }
+                .btn-categoria { width: 100%; margin: 0; }
+            }
+        </style>
+        <button class="btn-categoria" onclick="mostrarProductos('Anillos')">Anillos</button>
+        <button class="btn-categoria" onclick="mostrarProductos('Pulseras')">Pulseras</button>
+        <button class="btn-categoria" onclick="mostrarProductos('Collares')">Collares</button>
+        <button class="btn-categoria" onclick="mostrarProductos('Aritos')">Aritos</button>
+        <button class="btn-categoria" onclick="mostrarProductos('Cintos')">Cintos</button>
+        <button class="btn-categoria" onclick="mostrarProductos('Kids')">Kids</button>
+        <button class="btn-categoria" onclick="mostrarProductos('Hombres')">Hombres</button>
     `;
 
-    // Insertar los botones en su contenedor
     document.getElementById("contenedor-botones-categorias").innerHTML = htmlBotones;
-    
-    // Limpiar el contenedor de imágenes y actualizar títulos
     document.getElementById("contenedor-galeria").innerHTML = '';
     document.getElementById("titulo-galeria").innerText = (tipo === "blanco") ? "Joyas de Acero Blanco" : "Joyas de Acero Dorado";
-    document.getElementById("subtitulo-galeria").innerText = "Selecciona una categoría para ver los productos";
-    
-    // Mostrar el modal
+    document.getElementById("subtitulo-galeria").innerText = "Selecciona una categoría";
     document.getElementById("modal-galeria").style.display = "block";
 }
 
-// Función para mostrar las imágenes de una categoría específica
+// 2. Función para leer y mostrar los productos desde GitHub
 async function mostrarProductos(categoria) {
-  const carpetaId = carpetas[tipoActual][categoria];
-  const url = `https://www.googleapis.com/drive/v3/files?q='${carpetaId}'+in+parents&key=${apiKey}&fields=files(id,name,mimeType)`;
-  
-  const res = await fetch(url);
-  const data = await res.json();
+    const contenedor = document.getElementById("contenedor-galeria");
+    const subtitulo = document.getElementById("subtitulo-galeria");
+    
+    subtitulo.innerText = "Cargando " + categoria + "...";
+    contenedor.innerHTML = '<div style="width:100%; text-align:center;"><i class="fa fa-spinner fa-spin"></i> Buscando joyas...</div>';
 
-  let html = "";
-  data.files.forEach(file => {
-    if (file.mimeType.startsWith("image/")) {
-      const imgUrl = `https://drive.google.com/thumbnail?id=${file.id}&sz=w1000`;
-html += `<img src="${imgUrl}" class="galeria-imagen" 
-      onmouseover="this.style.transform='scale(1.05)'" 
-      onmouseout="this.style.transform='scale(1)'">`;
+    try {
+        // Llamada a la API de GitHub para listar archivos en content/productos
+        const response = await fetch(`https://api.github.com/repos/${USER_GITHUB}/${REPO_GITHUB}/contents/content/productos`);
+        const files = await response.json();
+
+        let html = "";
+        let count = 0;
+
+        for (const file of files) {
+            if (file.name.endsWith('.md')) {
+                const res = await fetch(file.download_url);
+                const text = await res.text();
+                
+                // Extraer datos básicos del archivo Markdown (Frontmatter)
+                const title = text.match(/title:\s*"(.*)"|title:\s*(.*)/)?.[1] || text.match(/title:\s*(.*)/)?.[1];
+                const price = text.match(/price:\s*(.*)/)?.[1];
+                const image = text.match(/image:\s*(.*)/)?.[1];
+                const section = text.match(/section:\s*(.*)/)?.[1];
+                const category = text.match(/category:\s*(.*)/)?.[1];
+
+                // Filtrar por Colección (Blanco/Dorado) y Categoría
+                const seccionDeseada = (tipoActual === "blanco") ? "Acero Blanco" : "Acero Dorado";
+
+                if (section && section.trim() === seccionDeseada && category && category.trim() === categoria) {
+                    count++;
+                    html += `
+                        <div class="producto-card" style="width: 250px; background: #fff; padding: 15px; border-radius: 15px; box-shadow: 0 4px 10px rgba(0,0,0,0.05); text-align: center; border: 1px solid #f0f0f0;">
+                            <img src="${image}" style="width: 100%; height: 200px; object-fit: cover; border-radius: 10px; margin-bottom: 10px;">
+                            <h4 style="font-size: 16px; margin: 10px 0 5px; color: #333;">${title}</h4>
+                            <p style="font-weight: 700; color: #a88e86; font-size: 18px; margin-bottom: 10px;">$${price}</p>
+                            <a href="https://wa.me/5493644247351?text=Hola Barbi! Me interesa este producto: ${title}" target="_blank" style="background:#25d366; color:white; padding:8px 15px; border-radius:20px; text-decoration:none; display:inline-block; font-size:13px;">
+                                <i class="fab fa-whatsapp"></i> Consultar
+                            </a>
+                        </div>
+                    `;
+                }
+            }
+        }
+
+        if (count === 0) {
+            contenedor.innerHTML = `<p style="text-align:center; width:100%; color:#888;">No hay productos en ${categoria} aún ✨</p>`;
+        } else {
+            contenedor.innerHTML = html;
+        }
+        subtitulo.innerText = categoria;
+
+    } catch (error) {
+        console.error("Error:", error);
+        contenedor.innerHTML = `<p style="text-align:center; width:100%;">Cargando catálogo... (Asegúrate de haber publicado productos en el panel)</p>`;
     }
-  });
-
-  // Insertar solo las imágenes en el contenedor de galería
-  document.getElementById("contenedor-galeria").innerHTML = html;
-  document.getElementById("subtitulo-galeria").innerText = "Productos en " + categoria.charAt(0).toUpperCase() + categoria.slice(1);
 }
 
-// Función para cerrar modal
+// 3. Funciones de cierre del modal
 function cerrarGaleria() {
-  document.getElementById("modal-galeria").style.display = "none";
+    document.getElementById("modal-galeria").style.display = "none";
 }
 
-// Cerrar modal al hacer clic fuera del contenido
 document.getElementById("modal-galeria").addEventListener("click", function(e) {
-  if (e.target.id === "modal-galeria") {
-    cerrarGaleria();
-  }
+    if (e.target.id === "modal-galeria") cerrarGaleria();
 });
 </script>
 
