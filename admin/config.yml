@@ -1,14 +1,13 @@
-# Configuración del Backend (Conexión con GitHub)
+# Configuración del Backend para usar Email y Contraseña (Netlify Identity)
 backend:
-  name: github
-  repo: miqueasvb/ponte-bonita-web # Tu repositorio
-  branch: main # O master, según uses
+  name: git-gateway
+  branch: main # Asegurate de que esta sea tu rama principal (main o master)
 
-# Dónde se guardan las imágenes que suba Barbi
+# Configuración de guardado de imágenes
 media_folder: "assets/images/productos"
 public_folder: "assets/images/productos"
 
-# Configuración de las colecciones
+# Estructura del panel para Barbi
 collections:
   - name: "productos"
     label: "Productos (Joyas)"
@@ -20,7 +19,7 @@ collections:
       - { label: "Precio (sin el signo $)", name: "price", widget: "string" }
       - { label: "Imagen", name: "image", widget: "image" }
       - { 
-          label: "Colección", 
+          label: "Colección (Baño)", 
           name: "section", 
           widget: "select", 
           options: ["Acero Blanco", "Acero Dorado"] 
