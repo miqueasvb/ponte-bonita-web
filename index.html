@@ -276,6 +276,136 @@
     align-items: center;
 }
 
+
+@keyframes slideUp {
+    from { transform: translateY(50px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+
+.pb-modal-header h3 {
+    color: #d4a373; /* Un color dorado/rosado elegante */
+    margin-bottom: 5px;
+}
+
+.pb-cat-item:hover {
+    background: #d4a373;
+    color: white;
+    transform: scale(1.05);
+}
+
+.pb-catalogo-container { padding: 60px 0; background: #fff; }
+.pb-tabs-wrapper { overflow: hidden; margin-bottom: 40px; border-bottom: 1px solid #f2e9e4; }
+.pb-tabs-scroll { display: flex; overflow-x: auto; scroll-behavior: smooth; padding-bottom: 15px; gap: 10px; }
+.pb-tabs-scroll::-webkit-scrollbar { display: none; }
+.pb-tab-btn { white-space: nowrap; padding: 12px 25px; border: none; background: transparent; color: #9a8c98; font-weight: 600; cursor: pointer; border-radius: 50px; }
+.pb-tab-btn.active { background: #fdfaf7; color: #b5838d; box-shadow: 0 4px 10px rgba(181, 131, 141, 0.15); }
+.pb-productos-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 30px; min-height: 300px; transition: opacity 0.3s; }
+
+/* Contenedor principal */
+.pb-catalogo-container { padding: 60px 0; background: #fff; }
+
+/* Barra horizontal deslizable */
+.pb-tabs-wrapper {
+    overflow: hidden;
+    margin-bottom: 40px;
+    border-bottom: 1px solid #f2e9e4;
+}
+
+.pb-tabs-scroll {
+    display: flex;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    padding-bottom: 15px;
+    gap: 10px;
+}
+
+/* Ocultar barra de scroll para estética */
+.pb-tabs-scroll::-webkit-scrollbar { display: none; }
+
+.pb-tab-btn {
+    white-space: nowrap;
+    padding: 12px 25px;
+    border: none;
+    background: transparent;
+    color: #9a8c98;
+    font-weight: 600;
+    font-size: 15px;
+    cursor: pointer;
+    transition: 0.3s;
+    border-radius: 50px;
+}
+
+.pb-tab-btn.active {
+    background: #fdfaf7;
+    color: #b5838d;
+    box-shadow: 0 4px 10px rgba(181, 131, 141, 0.15);
+}
+
+/* Grilla de productos */
+.pb-productos-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 30px;
+}
+
+/* Tarjeta de Joya Individual */
+.pb-card-joya {
+    background: #fff;
+    border-radius: 20px;
+    overflow: hidden;
+    transition: 0.4s;
+    border: 1px solid #f8f1f1;
+}
+
+.pb-card-joya:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 30px rgba(0,0,0,0.05);
+}
+
+.pb-card-img {
+    height: 280px;
+    background: #fdfaf7;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.pb-card-img img {
+    max-width: 90%;
+    max-height: 90%;
+    object-fit: contain;
+}
+
+.pb-card-info { padding: 20px; text-align: center; }
+
+.pb-tag {
+    font-size: 10px;
+    text-transform: uppercase;
+    color: #b5838d;
+    letter-spacing: 1px;
+    font-weight: 700;
+}
+
+.pb-card-info h4 { margin: 10px 0 5px; font-size: 18px; color: #4a4e69; }
+
+.pb-precio { font-size: 20px; font-weight: 700; color: #222; margin-bottom: 15px; }
+
+.pb-btn-comprar {
+    display: inline-block;
+    padding: 10px 25px;
+    background: #b5838d;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 50px;
+    font-size: 14px;
+    transition: 0.3s;
+}
+
+#pb-grid-productos {
+    transition: all 0.4s ease-in-out;
+}
+
 </style>
 
     </head>
@@ -424,7 +554,35 @@ Porque mi lema es simple: cuando te ves bien, te sentís mejor. 💕
 <!-- ***** Mensaje Especial End ***** -->
 
 
+<section id="pb-catalogo" class="pb-catalogo-container">
+    <div class="container">
+        <div class="pb-tabs-wrapper">
+            <div class="pb-tabs-scroll">
+                <button class="pb-tab-btn active" onclick="filtrarCategoria('Anillos', this)">💍 Anillos</button>
+                <button class="pb-tab-btn" onclick="filtrarCategoria('Pulseras', this)">📿 Pulseras</button>
+                <button class="pb-tab-btn" onclick="filtrarCategoria('Collares', this)">✨ Collares</button>
+                <button class="pb-tab-btn" onclick="filtrarCategoria('Aritos', this)">👂 Aritos</button>
+                <button class="pb-tab-btn" onclick="filtrarCategoria('Cintos', this)">🎗️ Cintos</button>
+                <button class="pb-tab-btn" onclick="filtrarCategoria('Kids', this)">🧸 Kids</button>
+                <button class="pb-tab-btn" onclick="filtrarCategoria('Hombres', this)">⌚ Hombres</button>
+            </div>
+        </div>
 
+        <div id="pb-grid-productos" class="pb-productos-grid">
+            <div class="pb-card-joya">
+                <div class="pb-card-img">
+                    <img src="assets/images/ejemplo-anillo.jpg" alt="Anillo Silver">
+                </div>
+                <div class="pb-card-info">
+                    <span class="pb-tag">Acero Blanco</span>
+                    <h4>Anillo Trenzado Rose</h4>
+                    <p class="pb-precio">$12.500</p>
+                    <a href="#" class="pb-btn-comprar">Consultar</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
 
 <!-- ***** Contacto ***** -->
 <section class="contact-area" id="contact" style="background:#fafafa; padding:60px 0;">
@@ -535,23 +693,6 @@ Porque mi lema es simple: cuando te ves bien, te sentís mejor. 💕
     <!-- Global Init -->
     <script src="assets/js/custom.js"></script>
 
-    <script>
-
-        $(function() {
-            var selectedClass = "";
-            $("p").click(function(){
-            selectedClass = $(this).attr("data-rel");
-            $("#portfolio").fadeTo(50, 0.1);
-                $("#portfolio div").not("."+selectedClass).fadeOut();
-            setTimeout(function() {
-              $("."+selectedClass).fadeIn();
-              $("#portfolio").fadeTo(50, 1);
-            }, 500);
-                
-            });
-        });
-
-    </script>
 
 <!-- ***** Botón flotante de WhatsApp ***** -->
 <a href="https://wa.me/5493644247351" class="whatsapp-float" target="_blank">
@@ -591,83 +732,48 @@ Porque mi lema es simple: cuando te ves bien, te sentís mejor. 💕
 </style>
 
 
-<!-- Modal Galería -->
-<div id="modal-galeria" style="display:none;position:fixed;top:0;left:0;width:100%;height:100%;
-  background:rgba(0,0,0,0.8);z-index:2000;overflow:auto;padding-bottom: 50px;">
-  
-  <div style="position:relative;max-width:1000px;margin:50px auto;background:#fff;
-    border-radius:12px;padding:20px;">
-    
-    <span onclick="cerrarGaleria()" style="position:absolute;top:10px;right:20px;
-      font-size:30px;cursor:pointer;font-weight:bold;color:#333;">&times;</span>
-    
-    <h2 id="titulo-galeria" style="text-align:center;margin-bottom:5px;"></h2>
-    <hr style="width:50px; border:2px solid #ccc; margin:5px auto;">
-    <p id="subtitulo-galeria" style="text-align:center; color:#555; margin-bottom:20px;"></p>
-    
-    <div id="contenedor-botones-categorias" style="text-align: center; margin-bottom: 20px;"></div>
-
-    <div id="contenedor-galeria" style="display:flex;flex-wrap:wrap;gap:15px;justify-content:center;"></div>
-  </div>
-</div>
-
 
 
 <script>
 // Configuración de acceso al contenido de GitHub
-// IMPORTANTE: Cambia estos dos valores por los tuyos
 const USER_GITHUB = "miqueasvb"; 
 const REPO_GITHUB = "ponte-bonita-web";
+let tipoActual = 'Acero Blanco'; // Valor por defecto
 
-let tipoActual = ''; 
-
-// 1. Función para abrir la galería y mostrar botones
+// 1. Función para cuando tocan las tarjetas de "Acero Blanco" o "Dorado"
 function abrirGaleria(tipo) {
-    tipoActual = tipo; // 'blanco' o 'dorado'
+    // Definimos la sección basándonos en el clic
+    tipoActual = (tipo === 'blanco') ? 'Acero Blanco' : 'Acero Dorado';
     
-    let htmlBotones = `
-        <style>
-            .btn-categoria {
-                display: inline-block; padding: 12px 25px; margin: 5px;
-                font-size: 16px; font-weight: 500; color: #fff;
-                background-color: #333; border: none; border-radius: 30px;
-                cursor: pointer; transition: background-color 0.3s ease;
-            }
-            .btn-categoria:hover { background-color: #555; }
-            @media (max-width: 768px) {
-                #contenedor-botones-categorias {
-                    display: grid; grid-template-columns: repeat(2, 1fr);
-                    gap: 10px; padding: 0 10px;
-                }
-                .btn-categoria { width: 100%; margin: 0; }
-            }
-        </style>
-        <button class="btn-categoria" onclick="mostrarProductos('Anillos')">Anillos</button>
-        <button class="btn-categoria" onclick="mostrarProductos('Pulseras')">Pulseras</button>
-        <button class="btn-categoria" onclick="mostrarProductos('Collares')">Collares</button>
-        <button class="btn-categoria" onclick="mostrarProductos('Aritos')">Aritos</button>
-        <button class="btn-categoria" onclick="mostrarProductos('Cintos')">Cintos</button>
-        <button class="btn-categoria" onclick="mostrarProductos('Kids')">Kids</button>
-        <button class="btn-categoria" onclick="mostrarProductos('Hombres')">Hombres</button>
-    `;
-
-    document.getElementById("contenedor-botones-categorias").innerHTML = htmlBotones;
-    document.getElementById("contenedor-galeria").innerHTML = '';
-    document.getElementById("titulo-galeria").innerText = (tipo === "blanco") ? "Joyas de Acero Blanco" : "Joyas de Acero Dorado";
-    document.getElementById("subtitulo-galeria").innerText = "Selecciona una categoría";
-    document.getElementById("modal-galeria").style.display = "block";
+    // Hacemos scroll suave hasta la sección del catálogo
+    const seccionCatalogo = document.getElementById('pb-catalogo');
+    if(seccionCatalogo) {
+        window.scrollTo({
+            top: seccionCatalogo.offsetTop - 100,
+            behavior: 'smooth'
+        });
+    }
+    
+    // Forzamos que se cargue la primera categoría (Anillos) por defecto
+    // Buscamos el primer botón de las pestañas para activarlo visualmente
+    const primerTab = document.querySelector('.pb-tab-btn');
+    filtrarCategoria('Anillos', primerTab);
 }
 
-// 2. Función para leer y mostrar los productos desde GitHub
-async function mostrarProductos(categoria) {
-    const contenedor = document.getElementById("contenedor-galeria");
-    const subtitulo = document.getElementById("subtitulo-galeria");
+// 2. Función principal para filtrar y mostrar productos desde GitHub
+async function filtrarCategoria(categoria, elemento) {
+    // Manejo visual de las pestañas (Tabs)
+    const botones = document.querySelectorAll('.pb-tab-btn');
+    botones.forEach(btn => btn.classList.remove('active'));
+    if(elemento) elemento.classList.add('active');
+
+    const contenedor = document.getElementById("pb-grid-productos");
     
-    subtitulo.innerText = "Cargando " + categoria + "...";
-    contenedor.innerHTML = '<div style="width:100%; text-align:center;"><i class="fa fa-spinner fa-spin"></i> Buscando joyas...</div>';
+    // Efecto de carga
+    contenedor.style.opacity = "0.3";
+    contenedor.innerHTML = '<div style="grid-column: 1/-1; text-align:center; padding:50px;"><i class="fa fa-spinner fa-spin"></i> Cargando joyas de ' + tipoActual + '...</div>';
 
     try {
-        // Llamada a la API de GitHub para listar archivos en content/productos
         const response = await fetch(`https://api.github.com/repos/${USER_GITHUB}/${REPO_GITHUB}/contents/content/productos`);
         const files = await response.json();
 
@@ -679,26 +785,29 @@ async function mostrarProductos(categoria) {
                 const res = await fetch(file.download_url);
                 const text = await res.text();
                 
-                // Extraer datos básicos del archivo Markdown (Frontmatter)
+                // Extraer datos del Markdown
                 const title = text.match(/title:\s*"(.*)"|title:\s*(.*)/)?.[1] || text.match(/title:\s*(.*)/)?.[1];
                 const price = text.match(/price:\s*(.*)/)?.[1];
                 const image = text.match(/image:\s*(.*)/)?.[1];
                 const section = text.match(/section:\s*(.*)/)?.[1];
                 const category = text.match(/category:\s*(.*)/)?.[1];
 
-                // Filtrar por Colección (Blanco/Dorado) y Categoría
-                const seccionDeseada = (tipoActual === "blanco") ? "Acero Blanco" : "Acero Dorado";
-
-                if (section && section.trim() === seccionDeseada && category && category.trim() === categoria) {
+                // Filtro doble: Colección (Blanco/Dorado) Y Categoría (Anillos/etc)
+                if (section && section.trim() === tipoActual && category && category.trim() === categoria) {
                     count++;
                     html += `
-                        <div class="producto-card" style="width: 250px; background: #fff; padding: 15px; border-radius: 15px; box-shadow: 0 4px 10px rgba(0,0,0,0.05); text-align: center; border: 1px solid #f0f0f0;">
-                            <img src="${image}" style="width: 100%; height: 200px; object-fit: cover; border-radius: 10px; margin-bottom: 10px;">
-                            <h4 style="font-size: 16px; margin: 10px 0 5px; color: #333;">${title}</h4>
-                            <p style="font-weight: 700; color: #a88e86; font-size: 18px; margin-bottom: 10px;">$${price}</p>
-                            <a href="https://wa.me/5493644247351?text=Hola Barbi! Me interesa este producto: ${title}" target="_blank" style="background:#25d366; color:white; padding:8px 15px; border-radius:20px; text-decoration:none; display:inline-block; font-size:13px;">
-                                <i class="fab fa-whatsapp"></i> Consultar
-                            </a>
+                        <div class="pb-card-joya">
+                            <div class="pb-card-img">
+                                <img src="${image}" alt="${title}">
+                            </div>
+                            <div class="pb-card-info">
+                                <span class="pb-tag">${tipoActual}</span>
+                                <h4>${title}</h4>
+                                <p class="pb-precio">$${price}</p>
+                                <a href="https://wa.me/5493644247351?text=Hola Barbi! Me interesa este producto de la web: ${title}" class="pb-btn-comprar" target="_blank">
+                                    Consultar
+                                </a>
+                            </div>
                         </div>
                     `;
                 }
@@ -706,26 +815,19 @@ async function mostrarProductos(categoria) {
         }
 
         if (count === 0) {
-            contenedor.innerHTML = `<p style="text-align:center; width:100%; color:#888;">No hay productos en ${categoria} aún ✨</p>`;
+            contenedor.innerHTML = `<p style="grid-column: 1 / -1; text-align:center; width:100%; padding: 50px; color: #888;">No hay ${categoria} en ${tipoActual} por el momento ✨</p>`;
         } else {
             contenedor.innerHTML = html;
         }
-        subtitulo.innerText = categoria;
 
     } catch (error) {
-        console.error("Error:", error);
-        contenedor.innerHTML = `<p style="text-align:center; width:100%;">Cargando catálogo... (Asegúrate de haber publicado productos en el panel)</p>`;
+        console.error("Error cargando productos:", error);
+        contenedor.innerHTML = `<p style="grid-column: 1 / -1; text-align:center; width:100%; padding: 50px;">Error al conectar con el catálogo. Revisa la conexión.</p>`;
     }
+    
+    // Restaurar opacidad
+    contenedor.style.opacity = "1";
 }
-
-// 3. Funciones de cierre del modal
-function cerrarGaleria() {
-    document.getElementById("modal-galeria").style.display = "none";
-}
-
-document.getElementById("modal-galeria").addEventListener("click", function(e) {
-    if (e.target.id === "modal-galeria") cerrarGaleria();
-});
 </script>
 
 
