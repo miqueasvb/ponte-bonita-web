@@ -1,7 +1,18 @@
+# Configuración del Backend (Conexión con GitHub)
+backend:
+  name: github
+  repo: miqueasvb/ponte-bonita-web # Tu repositorio
+  branch: main # O master, según uses
+
+# Dónde se guardan las imágenes que suba Barbi
+media_folder: "assets/images/productos"
+public_folder: "assets/images/productos"
+
+# Configuración de las colecciones
 collections:
   - name: "productos"
     label: "Productos (Joyas)"
-    folder: "content/productos" # Aquí se guardarán los archivos .md
+    folder: "content/productos"
     create: true
     slug: "{{year}}-{{month}}-{{day}}-{{title}}"
     fields:
