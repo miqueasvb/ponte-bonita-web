@@ -602,13 +602,13 @@ Porque mi lema es simple: cuando te ves bien, te sentís mejor. 💕
 
         <div class="pb-tabs-wrapper">
             <div class="pb-tabs-scroll">
-                <button class="pb-tab-btn active" onclick="filtrarCategoria('Anillos', this)">💍 Anillos</button>
-                <button class="pb-tab-btn" onclick="filtrarCategoria('Pulseras', this)">📿 Pulseras</button>
-                <button class="pb-tab-btn" onclick="filtrarCategoria('Collares', this)">✨ Collares</button>
-                <button class="pb-tab-btn" onclick="filtrarCategoria('Aritos', this)">👂 Aritos</button>
-                <button class="pb-tab-btn" onclick="filtrarCategoria('Cintos', this)">🎗️ Cintos</button>
-                <button class="pb-tab-btn" onclick="filtrarCategoria('Kids', this)">🧸 Kids</button>
-                <button class="pb-tab-btn" onclick="filtrarCategoria('Hombres', this)">⌚ Hombres</button>
+                <button class="pb-tab-btn active" onclick="filtrarCategoria('Anillos', this)">Anillos</button>
+                <button class="pb-tab-btn" onclick="filtrarCategoria('Pulseras', this)">Pulseras</button>
+                <button class="pb-tab-btn" onclick="filtrarCategoria('Collares', this)">Collares</button>
+                <button class="pb-tab-btn" onclick="filtrarCategoria('Aritos', this)">Aritos</button>
+                <button class="pb-tab-btn" onclick="filtrarCategoria('Cintos', this)">Cintos</button>
+                <button class="pb-tab-btn" onclick="filtrarCategoria('Kids', this)">Kids</button>
+                <button class="pb-tab-btn" onclick="filtrarCategoria('Hombres', this)">Hombres</button>
             </div>
         </div>
 
@@ -848,7 +848,7 @@ async function filtrarCategoria(categoria, elemento) {
                 }
             }
         }
-        contenedor.innerHTML = count === 0 ? `<p style="grid-column: 1/-1; text-align:center; padding:50px;">No hay productos aquí todavía ✨</p>` : html;
+        contenedor.innerHTML = count === 0 ? `<p style="grid-column: 1/-1; text-align:center; padding:50px;">No hay productos aquí todavía.</p>` : html;
     } catch (e) {
         contenedor.innerHTML = `<p style="grid-column: 1/-1; text-align:center; padding:50px;">Error de conexión.</p>`;
     }
