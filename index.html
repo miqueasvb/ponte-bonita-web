@@ -444,6 +444,21 @@
         padding-left: 15px; /* Espacio para que no pegue al borde */
     }
 }
+
+.contact-area {
+    margin-bottom: 0 !important;
+    padding-bottom: 60px !important;
+}
+
+footer {
+    margin-top: 0 !important;
+}
+
+/* Esto elimina espacios extraños que meten algunos navegadores */
+section {
+    display: block;
+    overflow: hidden;
+}
     
 </style>
 
@@ -617,43 +632,20 @@ Porque mi lema es simple: cuando te ves bien, te sentís mejor. 💕
     </div>
 </section>
 
-<!-- ***** Contacto ***** -->
-<section class="contact-area" id="contact" style="background:#fafafa; padding:60px 0;">
+<section class="contact-area" id="contact" style="background:#fff; padding:40px 0;">
   <div class="container text-center">
-    <h2 style="font-weight:500; color:#444; margin-bottom:15px;">Escribime 💌</h2>
-    <p style="color:#666; max-width:500px; margin:0 auto 30px auto; line-height:1.6;">
-      Soy Barbi, la persona detrás de Ponte Bonita.  
-      Si tenés una consulta o simplemente querés charlar sobre algún detalle,  
-      me va a encantar leerte ✨
-    </p>
-
-<form id="contact-form" action="https://formsubmit.co/pontebonitabarbi@gmail.com" method="POST" style="max-width:600px; margin:0 auto;">
-  <!-- Opcional: desactiva captcha -->
-  <input type="hidden" name="_captcha" value="false">
-  <!-- Opcional: redirige a página de gracias -->
-  <input type="hidden" name="_next" value="https://www.accesoriospontebonita.com.ar/gracias.html">
-
-  <div class="row">
-    <div class="col-lg-6 mb-3">
-      <input type="text" name="name" class="form-control" placeholder="Tu nombre" required>
+    <div style="background:#fafafa; padding:40px; border-radius:30px; border: 1px solid #f2e9e4;">
+        <h2 style="font-weight:500; color:#444; margin-bottom:15px;">¿Tenés alguna duda? 💌</h2>
+        <p style="color:#666; max-width:500px; margin:0 auto 25px auto; line-height:1.6;">
+          Si querés consultar por stock o algún detalle especial, escribime directamente por WhatsApp. ¡Te respondo en seguida! ✨
+        </p>
+        <a href="https://wa.me/5493644247351" target="_blank" 
+           style="display:inline-block; background:#25d366; color:#fff; padding:15px 35px; border-radius:50px; font-weight:600; text-decoration:none; transition:0.3s; box-shadow: 0 4px 15px rgba(37, 211, 102, 0.2);">
+           <i class="fab fa-whatsapp"></i> Chatear con Barbi
+        </a>
     </div>
-    <div class="col-lg-6 mb-3">
-      <input type="email" name="email" class="form-control" placeholder="Tu email" required>
-    </div>
-    <div class="col-12 mb-3">
-      <textarea name="message" rows="4" class="form-control" placeholder="Tu mensaje..." required></textarea>
-    </div>
-    <div class="col-12">
-      <button type="submit" class="btn btn-dark px-4 py-2" style="border-radius:30px;">
-        Enviar <i class="fa fa-paper-plane"></i>
-      </button>
-    </div>
-  </div>
-</form>
-
   </div>
 </section>
-<!-- ***** Contacto End ***** -->
 
     
 <!-- ***** Footer Start ***** -->
