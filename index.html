@@ -246,6 +246,12 @@
     box-shadow: 0 10px 20px rgba(0,0,0,0.05);
 }
 
+    /* Agregalo en tu bloque de <style> */
+footer a:hover img {
+    filter: grayscale(0%) brightness(100%) !important;
+    transform: scale(1.1);
+}
+
 /* Ajuste para que se vea bien en móviles */
 @media (max-width: 768px) {
     .pb-ig-content {
@@ -651,50 +657,43 @@ Porque mi lema es simple: cuando te ves bien, te sentís mejor. 💕
 </section>
 
     
-<!-- ***** Footer Start ***** -->
-<footer style="background:#222; color:#fff; padding:50px 0 20px 0; font-size:15px;">
+<footer style="background:#222; color:#fff; padding:50px 0 20px 0; font-size:15px; margin-top: 0 !important;">
   <div class="container text-center">
 
-    <!-- Logo + frase -->
-<div class="mb-4">
-    <img src="assets/images/white-logohd.png" alt="Ponte Bonita" class="footer-logo"> <p style="color:#ccc; font-size:14px; max-width:400px; margin:0 auto;">
-      <p style="color:#ccc; font-size:14px; max-width:400px; margin:0 auto;">
+    <div class="mb-4">
+      <img src="assets/images/white-logohd.png" alt="Ponte Bonita" class="footer-logo"> 
+      <p style="color:#ccc; font-size:14px; max-width:400px; margin:10px auto 0 auto;">
         “Detalles que iluminan tu esencia ✨”
       </p>
     </div>
 
-    <!-- Contacto rápido -->
     <ul style="list-style:none; padding:0; margin:0 0 20px 0; color:#ccc;">
       <li><i class="fa fa-envelope"></i> pontebonitabarbi@gmail.com</li>
       <li><i class="fa fa-phone"></i> +54 9 3644-247351</li>
     </ul>
 
-    <!-- Redes sociales -->
-<div class="social-icons mb-3">
-  <a href="https://www.instagram.com/pontebonita__accesorios_/" target="_blank" style="color:#fff; font-size:22px; margin:0 10px;">
-    <i class="fab fa-instagram"></i>
-  </a>
-  <a href="https://wa.me/5493644247351" target="_blank" style="color:#fff; font-size:22px; margin:0 10px;">
-    <i class="fab fa-whatsapp"></i>
-  </a>
-</div>
+    <div class="social-icons mb-3">
+      <a href="https://www.instagram.com/pontebonita__accesorios_/" target="_blank" style="color:#fff; font-size:22px; margin:0 10px;">
+        <i class="fab fa-instagram"></i>
+      </a>
+      <a href="https://wa.me/5493644247351" target="_blank" style="color:#fff; font-size:22px; margin:0 10px;">
+        <i class="fab fa-whatsapp"></i>
+      </a>
+    </div>
 
-    <!-- Copyright -->
     <p style="color:#777; font-size:13px; margin-top:20px;">
       © 2025 Copyright · Ponte Bonita · Hecho con amor 💕
     </p>
 
-    <!-- Página desarrollada -->
-    <p style="color:#999; font-size:13px; margin-top:10px;">
-      Página desarrollada por 
-      <a href="https://wa.me/5493644247775" target="_blank" style="color:#fff; text-decoration:none; font-weight:600;">
-        Miqueas Vico
+    <div style="margin-top:15px; display: flex; flex-direction: column; align-items: center; gap: 8px;">
+      <span style="color:#999; font-size:12px;">Desarrollado por</span>
+      <a href="https://www.instagram.com/rubit.studios/" target="_blank" style="transition: 0.3s;">
+        <img src="assets/images/logo-rubit.png" alt="Rubit Studios" style="height: 30px; width: auto; filter: grayscale(100%) brightness(200%);">
       </a>
-    </p>
+    </div>
 
   </div>
 </footer>
-<!-- ***** Footer End ***** -->
 
 
     
