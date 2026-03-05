@@ -424,6 +424,26 @@
     color: white;
     border-color: #b5838d;
 }
+
+/* Modificá este bloque en tu <style> */
+.pb-tabs-scroll {
+    display: flex;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    padding-bottom: 15px;
+    gap: 10px;
+    /* ESTO ES LO QUE CENTRA */
+    justify-content: center; 
+}
+
+/* Ajuste para celulares: si son muchos botones y no entran, 
+   que empiecen desde la izquierda para que se entienda que hay scroll */
+@media (max-width: 768px) {
+    .pb-tabs-scroll {
+        justify-content: flex-start;
+        padding-left: 15px; /* Espacio para que no pegue al borde */
+    }
+}
     
 </style>
 
