@@ -748,43 +748,51 @@ Porque mi lema es simple: cuando te ves bien, te sentís mejor. 💕
 
 
 <script>
-// Configuración de acceso al contenido de GitHub
 const USER_GITHUB = "miqueasvb"; 
 const REPO_GITHUB = "ponte-bonita-web";
-let tipoActual = 'Acero Blanco'; // Valor por defecto
+let tipoActual = 'Acero Blanco'; // Se mantiene igual que en el CMS
+let categoriaActual = 'Anillos'; // Categoría por defecto
 
-// 1. Función para cuando tocan las tarjetas de "Acero Blanco" o "Dorado"
+// Función para los cuadros de arriba (Hero)
 function abrirGaleria(tipo) {
-    // Definimos la sección basándonos en el clic
     tipoActual = (tipo === 'blanco') ? 'Acero Blanco' : 'Acero Dorado';
     
-    // Hacemos scroll suave hasta la sección del catálogo
+    // Sincronizar botones visuales
+    actualizarBotonesMaterial();
+
     const seccionCatalogo = document.getElementById('pb-catalogo');
-    if(seccionCatalogo) {
-        window.scrollTo({
-            top: seccionCatalogo.offsetTop - 100,
-            behavior: 'smooth'
-        });
-    }
-    
-    // Forzamos que se cargue la primera categoría (Anillos) por defecto
-    // Buscamos el primer botón de las pestañas para activarlo visualmente
+    window.scrollTo({ top: seccionCatalogo.offsetTop - 100, behavior: 'smooth' });
+
     const primerTab = document.querySelector('.pb-tab-btn');
     filtrarCategoria('Anillos', primerTab);
 }
 
-// 2. Función principal para filtrar y mostrar productos desde GitHub
+// Nueva función para cambiar material sin subir
+function cambiarMaterial(nuevoMaterial) {
+    tipoActual = nuevoMaterial;
+    actualizarBotonesMaterial();
+    
+    // Recargar la categoría en la que ya estábamos
+    const tabActivo = document.querySelector('.pb-tab-btn.active');
+    filtrarCategoria(categoriaActual, tabActivo);
+}
+
+function actualizarBotonesMaterial() {
+    document.querySelectorAll('.pb-material-btn').forEach(btn => btn.classList.remove('active'));
+    if(tipoActual === 'Acero Blanco') document.getElementById('btn-blanco').classList.add('active');
+    else document.getElementById('btn-dorado').classList.add('active');
+}
+
 async function filtrarCategoria(categoria, elemento) {
-    // Manejo visual de las pestañas (Tabs)
+    categoriaActual = categoria; // Guardamos para cuando cambiemos de material
+    
     const botones = document.querySelectorAll('.pb-tab-btn');
     botones.forEach(btn => btn.classList.remove('active'));
     if(elemento) elemento.classList.add('active');
 
     const contenedor = document.getElementById("pb-grid-productos");
-    
-    // Efecto de carga
     contenedor.style.opacity = "0.3";
-    contenedor.innerHTML = '<div style="grid-column: 1/-1; text-align:center; padding:50px;"><i class="fa fa-spinner fa-spin"></i> Cargando joyas de ' + tipoActual + '...</div>';
+    contenedor.innerHTML = '<div style="grid-column: 1/-1; text-align:center; padding:50px;"><i class="fa fa-spinner fa-spin"></i> Cargando...</div>';
 
     try {
         const response = await fetch(`https://api.github.com/repos/${USER_GITHUB}/${REPO_GITHUB}/contents/content/productos`);
@@ -798,47 +806,32 @@ async function filtrarCategoria(categoria, elemento) {
                 const res = await fetch(file.download_url);
                 const text = await res.text();
                 
-                // Extraer datos del Markdown
+                // Extraer datos (idéntico a como lo guarda el CMS)
                 const title = text.match(/title:\s*"(.*)"|title:\s*(.*)/)?.[1] || text.match(/title:\s*(.*)/)?.[1];
                 const price = text.match(/price:\s*(.*)/)?.[1];
                 const image = text.match(/image:\s*(.*)/)?.[1];
                 const section = text.match(/section:\s*(.*)/)?.[1];
                 const category = text.match(/category:\s*(.*)/)?.[1];
 
-                // Filtro doble: Colección (Blanco/Dorado) Y Categoría (Anillos/etc)
-                if (section && section.trim() === tipoActual && category && category.trim() === categoria) {
+                if (section?.trim() === tipoActual && category?.trim() === categoria) {
                     count++;
                     html += `
                         <div class="pb-card-joya">
-                            <div class="pb-card-img">
-                                <img src="${image}" alt="${title}">
-                            </div>
+                            <div class="pb-card-img"><img src="${image}" alt="${title}"></div>
                             <div class="pb-card-info">
                                 <span class="pb-tag">${tipoActual}</span>
                                 <h4>${title}</h4>
                                 <p class="pb-precio">$${price}</p>
-                                <a href="https://wa.me/5493644247351?text=Hola Barbi! Me interesa este producto de la web: ${title}" class="pb-btn-comprar" target="_blank">
-                                    Consultar
-                                </a>
+                                <a href="https://wa.me/5493644247351?text=Hola Barbi! Me interesa: ${title}" class="pb-btn-comprar" target="_blank">Consultar</a>
                             </div>
-                        </div>
-                    `;
+                        </div>`;
                 }
             }
         }
-
-        if (count === 0) {
-            contenedor.innerHTML = `<p style="grid-column: 1 / -1; text-align:center; width:100%; padding: 50px; color: #888;">No hay ${categoria} en ${tipoActual} por el momento ✨</p>`;
-        } else {
-            contenedor.innerHTML = html;
-        }
-
-    } catch (error) {
-        console.error("Error cargando productos:", error);
-        contenedor.innerHTML = `<p style="grid-column: 1 / -1; text-align:center; width:100%; padding: 50px;">Error al conectar con el catálogo. Revisa la conexión.</p>`;
+        contenedor.innerHTML = count === 0 ? `<p style="grid-column: 1/-1; text-align:center; padding:50px;">No hay productos aquí todavía ✨</p>` : html;
+    } catch (e) {
+        contenedor.innerHTML = `<p style="grid-column: 1/-1; text-align:center; padding:50px;">Error de conexión.</p>`;
     }
-    
-    // Restaurar opacidad
     contenedor.style.opacity = "1";
 }
 </script>
