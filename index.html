@@ -558,6 +558,11 @@ Porque mi lema es simple: cuando te ves bien, te sentís mejor. 💕
 
 <section id="pb-catalogo" class="pb-catalogo-container">
     <div class="container">
+        <div style="display: flex; justify-content: center; gap: 10px; margin-bottom: 25px;">
+            <button class="pb-material-btn active" id="btn-blanco" onclick="cambiarMaterial('Acero Blanco')">Acero Blanco</button>
+            <button class="pb-material-btn" id="btn-dorado" onclick="cambiarMaterial('Acero Dorado')">Acero Dorado</button>
+        </div>
+
         <div class="pb-tabs-wrapper">
             <div class="pb-tabs-scroll">
                 <button class="pb-tab-btn active" onclick="filtrarCategoria('Anillos', this)">💍 Anillos</button>
@@ -571,18 +576,7 @@ Porque mi lema es simple: cuando te ves bien, te sentís mejor. 💕
         </div>
 
         <div id="pb-grid-productos" class="pb-productos-grid">
-            <div class="pb-card-joya">
-                <div class="pb-card-img">
-                    <img src="assets/images/ejemplo-anillo.jpg" alt="Anillo Silver">
-                </div>
-                <div class="pb-card-info">
-                    <span class="pb-tag">Acero Blanco</span>
-                    <h4>Anillo Trenzado Rose</h4>
-                    <p class="pb-precio">$12.500</p>
-                    <a href="#" class="pb-btn-comprar">Consultar</a>
-                </div>
             </div>
-        </div>
     </div>
 </section>
 
