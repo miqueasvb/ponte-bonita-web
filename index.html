@@ -774,39 +774,51 @@ let categoriaActual = 'Anillos';
 
 // Función para los cuadros de arriba (Hero)
 function abrirGaleria(tipo) {
-    // Definimos el material según el clic
     if(tipo === 'blanco') tipoActual = 'Acero Blanco';
     else if(tipo === 'dorado') tipoActual = 'Acero Dorado';
     else if(tipo === 'hombres') tipoActual = 'Hombres';
     
-    // Sincronizar botones visuales del catálogo
     actualizarBotonesMaterial();
 
-    // Scroll suave hasta el catálogo
     const seccionCatalogo = document.getElementById('pb-catalogo');
     window.scrollTo({ top: seccionCatalogo.offsetTop - 100, behavior: 'smooth' });
 
-    // Forzamos que muestre 'Anillos' al entrar desde arriba
-    const primerTab = document.querySelector('.pb-tab-btn');
-    filtrarCategoria('Anillos', primerTab);
+    // Si es hombres, mandamos una categoría ficticia "Todos"
+    if(tipoActual === 'Hombres') {
+        filtrarCategoria('Todos', null);
+    } else {
+        const primerTab = document.querySelector('.pb-tab-btn');
+        filtrarCategoria('Anillos', primerTab);
+    }
 }
 
-// Cambiar material desde los botones del catálogo
 function cambiarMaterial(nuevoMaterial) {
     tipoActual = nuevoMaterial;
     actualizarBotonesMaterial();
     
-    // Recargar la categoría actual con el nuevo material
-    const tabActivo = document.querySelector('.pb-tab-btn.active');
-    filtrarCategoria(categoriaActual, tabActivo);
+    // Si cambiamos a Hombres, mostramos todo. Si volvemos a Acero, usamos la categoría guardada.
+    if(tipoActual === 'Hombres') {
+        filtrarCategoria('Todos', null);
+    } else {
+        const tabActivo = document.querySelector(`.pb-tab-btn`); // Selecciona el primero por defecto si se pierde el foco
+        filtrarCategoria(categoriaActual, tabActivo);
+    }
 }
 
 function actualizarBotonesMaterial() {
     document.querySelectorAll('.pb-material-btn').forEach(btn => btn.classList.remove('active'));
-    
-    if(tipoActual === 'Acero Blanco') document.getElementById('btn-blanco').classList.add('active');
-    else if(tipoActual === 'Acero Dorado') document.getElementById('btn-dorado').classList.add('active');
-    else if(tipoActual === 'Hombres') document.getElementById('btn-hombres').classList.add('active');
+    const botonesCategorias = document.querySelector('.pb-tabs-categorias');
+
+    if(tipoActual === 'Acero Blanco') {
+        document.getElementById('btn-blanco').classList.add('active');
+        botonesCategorias.style.display = 'flex'; // Mostrar subcategorías
+    } else if(tipoActual === 'Acero Dorado') {
+        document.getElementById('btn-dorado').classList.add('active');
+        botonesCategorias.style.display = 'flex'; // Mostrar subcategorías
+    } else if(tipoActual === 'Hombres') {
+        document.getElementById('btn-hombres').classList.add('active');
+        botonesCategorias.style.display = 'none'; // OCULTAR subcategorías para Hombres
+    }
 }
 
 async function filtrarCategoria(categoria, elemento) {
@@ -838,8 +850,13 @@ async function filtrarCategoria(categoria, elemento) {
                 const section = text.match(/section:\s*(.*)/)?.[1];
                 const category = text.match(/category:\s*(.*)/)?.[1];
 
-                // Filtramos por Material (tipoActual) y Categoría
-                if (section?.trim() === tipoActual && category?.trim() === categoria) {
+                // LÓGICA DE FILTRADO:
+                // Si es Hombres, solo importa que la sección sea "Hombres".
+                // Si es Acero, importa la sección Y la categoría.
+                const coincideSeccion = section?.trim() === tipoActual;
+                const coincideCategoria = (tipoActual === 'Hombres') || (category?.trim() === categoria);
+
+                if (coincideSeccion && coincideCategoria) {
                     count++;
                     html += `
                         <div class="pb-card-joya">
@@ -854,7 +871,7 @@ async function filtrarCategoria(categoria, elemento) {
                 }
             }
         }
-        contenedor.innerHTML = count === 0 ? `<p style="grid-column: 1/-1; text-align:center; padding:50px;">No hay productos en esta sección todavía.</p>` : html;
+        contenedor.innerHTML = count === 0 ? `<p style="grid-column: 1/-1; text-align:center; padding:50px;">No hay productos aquí todavía.</p>` : html;
     } catch (e) {
         contenedor.innerHTML = `<p style="grid-column: 1/-1; text-align:center; padding:50px;">Error de conexión.</p>`;
     }
