@@ -776,38 +776,29 @@ function abrirGaleria(tipo) {
     if(tipo === 'blanco') tipoActual = 'Acero Blanco';
     else if(tipo === 'dorado') tipoActual = 'Acero Dorado';
     else if(tipo === 'hombres') tipoActual = 'Hombres';
-    
     actualizarBotonesMaterial();
-
     const seccionCatalogo = document.getElementById('pb-catalogo');
-    if(seccionCatalogo) {
-        window.scrollTo({ top: seccionCatalogo.offsetTop - 80, behavior: 'smooth' });
-    }
-
+    if(seccionCatalogo) window.scrollTo({ top: seccionCatalogo.offsetTop - 80, behavior: 'smooth' });
     if(tipoActual === 'Hombres') {
         filtrarCategoria('Todo Hombres', null);
     } else {
-        const primerTab = document.querySelector('.pb-tab-btn');
-        filtrarCategoria('Anillos', primerTab);
+        filtrarCategoria('Anillos', document.querySelector('.pb-tab-btn'));
     }
 }
 
 function cambiarMaterial(nuevoMaterial) {
     tipoActual = nuevoMaterial;
     actualizarBotonesMaterial();
-    
     if(tipoActual === 'Hombres') {
         filtrarCategoria('Todo Hombres', null);
     } else {
-        const primerTab = document.querySelector('.pb-tab-btn');
-        filtrarCategoria('Anillos', primerTab);
+        filtrarCategoria('Anillos', document.querySelector('.pb-tab-btn'));
     }
 }
 
 function actualizarBotonesMaterial() {
     document.querySelectorAll('.pb-material-btn').forEach(btn => btn.classList.remove('active'));
     const contenedorTabs = document.querySelector('.pb-tabs-wrapper');
-
     if(tipoActual === 'Acero Blanco') {
         document.getElementById('btn-blanco').classList.add('active');
         if(contenedorTabs) contenedorTabs.style.display = 'block';
@@ -828,14 +819,12 @@ async function filtrarCategoria(categoria, elemento) {
 
     const contenedor = document.getElementById("pb-grid-productos");
     if(!contenedor) return;
-
     contenedor.style.opacity = "0.3";
     contenedor.innerHTML = '<div style="grid-column: 1/-1; text-align:center; padding:50px;"><i class="fa fa-spinner fa-spin"></i> Cargando...</div>';
 
     try {
         const response = await fetch(`https://api.github.com/repos/${USER_GITHUB}/${REPO_GITHUB}/contents/content/productos`);
         const files = await response.json();
-
         let html = "";
         let count = 0;
 
@@ -849,13 +838,13 @@ async function filtrarCategoria(categoria, elemento) {
                 const image = text.match(/image:\s*"(.*)"|image:\s*(.*)/)?.[1] || text.match(/image:\s*(.*)/)?.[1];
                 const section = text.match(/section:\s*"(.*)"|section:\s*(.*)/)?.[1] || text.match(/section:\s*(.*)/)?.[1];
                 
-                // Lógica para detectar cualquier categoría guardada
-                const catMujer = text.match(/category_mujer:\s*"(.*)"|category_mujer:\s*(.*)/)?.[1] || text.match(/category_mujer:\s*(.*)/)?.[1];
-                const catHombre = text.match(/category_hombre:\s*"(.*)"|category_hombre:\s*(.*)/)?.[1] || text.match(/category_hombre:\s*(.*)/)?.[1];
-                const catVieja = text.match(/category:\s*"(.*)"|category:\s*(.*)/)?.[1]; // Por si quedaron productos viejos
+                // Lógica de detección múltiple de categorías
+                const catM = text.match(/category_mujer:\s*"(.*)"|category_mujer:\s*(.*)/)?.[1] || text.match(/category_mujer:\s*(.*)/)?.[1];
+                const catH = text.match(/category_hombre:\s*"(.*)"|category_hombre:\s*(.*)/)?.[1] || text.match(/category_hombre:\s*(.*)/)?.[1];
+                const catV = text.match(/category:\s*"(.*)"|category:\s*(.*)/)?.[1];
 
                 const secLimpia = section?.replace(/"/g, '').trim();
-                const catFinal = (catMujer || catHombre || catVieja)?.replace(/"/g, '').trim();
+                const catFinal = (catM || catH || catV)?.replace(/"/g, '').trim();
 
                 const coincideSeccion = secLimpia === tipoActual;
                 const coincideCategoria = (tipoActual === 'Hombres') || (catFinal === categoria);
