@@ -770,7 +770,6 @@ Porque mi lema es simple: cuando te ves bien, te sentís mejor. 💕
 const USER_GITHUB = "miqueasvb"; 
 const REPO_GITHUB = "ponte-bonita-web";
 let tipoActual = 'Acero Blanco'; 
-let categoriaActual = 'Anillos'; 
 
 function abrirGaleria(tipo) {
     if(tipo === 'blanco') tipoActual = 'Acero Blanco';
@@ -779,46 +778,36 @@ function abrirGaleria(tipo) {
     actualizarBotonesMaterial();
     const seccionCatalogo = document.getElementById('pb-catalogo');
     if(seccionCatalogo) window.scrollTo({ top: seccionCatalogo.offsetTop - 80, behavior: 'smooth' });
-    if(tipoActual === 'Hombres') {
-        filtrarCategoria('Todo Hombres', null);
-    } else {
-        filtrarCategoria('Anillos', document.querySelector('.pb-tab-btn'));
-    }
+    
+    // Si es hombres, filtramos por cualquier cosa (porque mostramos todo)
+    filtrarCategoria(tipoActual === 'Hombres' ? 'Cualquiera' : 'Anillos', tipoActual === 'Hombres' ? null : document.querySelector('.pb-tab-btn'));
 }
 
 function cambiarMaterial(nuevoMaterial) {
     tipoActual = nuevoMaterial;
     actualizarBotonesMaterial();
-    if(tipoActual === 'Hombres') {
-        filtrarCategoria('Todo Hombres', null);
-    } else {
-        filtrarCategoria('Anillos', document.querySelector('.pb-tab-btn'));
-    }
+    filtrarCategoria(tipoActual === 'Hombres' ? 'Cualquiera' : 'Anillos', tipoActual === 'Hombres' ? null : document.querySelector('.pb-tab-btn'));
 }
 
 function actualizarBotonesMaterial() {
     document.querySelectorAll('.pb-material-btn').forEach(btn => btn.classList.remove('active'));
     const contenedorTabs = document.querySelector('.pb-tabs-wrapper');
-    if(tipoActual === 'Acero Blanco') {
-        document.getElementById('btn-blanco').classList.add('active');
-        if(contenedorTabs) contenedorTabs.style.display = 'block';
-    } else if(tipoActual === 'Acero Dorado') {
-        document.getElementById('btn-dorado').classList.add('active');
-        if(contenedorTabs) contenedorTabs.style.display = 'block';
-    } else if(tipoActual === 'Hombres') {
+    if(tipoActual === 'Hombres') {
         document.getElementById('btn-hombres').classList.add('active');
         if(contenedorTabs) contenedorTabs.style.display = 'none';
+    } else {
+        const idBtn = tipoActual === 'Acero Blanco' ? 'btn-blanco' : 'btn-dorado';
+        document.getElementById(idBtn).classList.add('active');
+        if(contenedorTabs) contenedorTabs.style.display = 'block';
     }
 }
 
 async function filtrarCategoria(categoria, elemento) {
-    categoriaActual = categoria; 
     const botones = document.querySelectorAll('.pb-tab-btn');
     botones.forEach(btn => btn.classList.remove('active'));
     if(elemento) elemento.classList.add('active');
 
     const contenedor = document.getElementById("pb-grid-productos");
-    if(!contenedor) return;
     contenedor.style.opacity = "0.3";
     contenedor.innerHTML = '<div style="grid-column: 1/-1; text-align:center; padding:50px;"><i class="fa fa-spinner fa-spin"></i> Cargando...</div>';
 
@@ -833,47 +822,36 @@ async function filtrarCategoria(categoria, elemento) {
                 const res = await fetch(file.download_url);
                 const text = await res.text();
                 
-                const title = text.match(/title:\s*"(.*)"|title:\s*(.*)/)?.[1] || text.match(/title:\s*(.*)/)?.[1];
-                const price = text.match(/price:\s*(.*)/)?.[1];
-                const image = text.match(/image:\s*"(.*)"|image:\s*(.*)/)?.[1] || text.match(/image:\s*(.*)/)?.[1];
-                const section = text.match(/section:\s*"(.*)"|section:\s*(.*)/)?.[1] || text.match(/section:\s*(.*)/)?.[1];
-                
-                // Lógica de detección múltiple de categorías
-                const catM = text.match(/category_mujer:\s*"(.*)"|category_mujer:\s*(.*)/)?.[1] || text.match(/category_mujer:\s*(.*)/)?.[1];
-                const catH = text.match(/category_hombre:\s*"(.*)"|category_hombre:\s*(.*)/)?.[1] || text.match(/category_hombre:\s*(.*)/)?.[1];
-                const catV = text.match(/category:\s*"(.*)"|category:\s*(.*)/)?.[1];
+                const title = (text.match(/title:\s*"(.*)"/)?.[1] || text.match(/title:\s*(.*)/)?.[1])?.trim();
+                const price = text.match(/price:\s*(.*)/)?.[1]?.trim();
+                const image = (text.match(/image:\s*"(.*)"/)?.[1] || text.match(/image:\s*(.*)/)?.[1])?.trim();
+                const section = (text.match(/section:\s*"(.*)"/)?.[1] || text.match(/section:\s*(.*)/)?.[1])?.trim();
+                const category = (text.match(/category:\s*"(.*)"/)?.[1] || text.match(/category:\s*(.*)/)?.[1])?.trim();
 
-                const secLimpia = section?.replace(/"/g, '').trim();
-                const catFinal = (catM || catH || catV)?.replace(/"/g, '').trim();
-
-                const coincideSeccion = secLimpia === tipoActual;
-                const coincideCategoria = (tipoActual === 'Hombres') || (catFinal === categoria);
-
-                if (coincideSeccion && coincideCategoria) {
-                    count++;
-                    html += `
-                        <div class="pb-card-joya">
-                            <div class="pb-card-img"><img src="${image}" alt="${title}"></div>
-                            <div class="pb-card-info">
-                                <span class="pb-tag">${tipoActual}</span>
-                                <h4>${title}</h4>
-                                <p class="pb-precio">$${price}</p>
-                                <a href="https://wa.me/5493644247351?text=Hola Barbi! Me interesa: ${title} (${tipoActual})" class="pb-btn-comprar" target="_blank">Consultar</a>
-                            </div>
-                        </div>`;
+                // LÓGICA CLAVE: Si la sección coincide y (es Hombre O coincide la categoría)
+                if (section === tipoActual) {
+                    if (tipoActual === 'Hombres' || category === categoria) {
+                        count++;
+                        html += `
+                            <div class="pb-card-joya">
+                                <div class="pb-card-img"><img src="${image}" alt="${title}"></div>
+                                <div class="pb-card-info">
+                                    <span class="pb-tag">${tipoActual}</span>
+                                    <h4>${title}</h4>
+                                    <p class="pb-precio">$${price}</p>
+                                    <a href="https://wa.me/5493644247351?text=Hola Barbi! Me interesa: ${title} (${tipoActual})" class="pb-btn-comprar" target="_blank">Consultar</a>
+                                </div>
+                            </div>`;
+                    }
                 }
             }
         }
         contenedor.innerHTML = count === 0 ? `<p style="grid-column: 1/-1; text-align:center; padding:50px;">No hay productos aquí todavía.</p>` : html;
-    } catch (e) {
-        contenedor.innerHTML = `<p style="grid-column: 1/-1; text-align:center; padding:50px;">Error al cargar.</p>`;
-    }
+    } catch (e) { contenedor.innerHTML = `<p style="grid-column: 1/-1; text-align:center; padding:50px;">Error al cargar.</p>`; }
     contenedor.style.opacity = "1";
 }
 
-document.addEventListener('DOMContentLoaded', () => {
-    filtrarCategoria('Anillos', document.querySelector('.pb-tab-btn'));
-});
+document.addEventListener('DOMContentLoaded', () => { filtrarCategoria('Anillos', document.querySelector('.pb-tab-btn')); });
 </script>
 
 
