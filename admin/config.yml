@@ -22,15 +22,15 @@ collections:
         widget: "select"
         options: ["Acero Blanco", "Acero Dorado", "Hombres"]
 
-      # CATEGORÍA MUJER: Solo aparece si eliges Acero Blanco o Dorado
-      - label: "Categoría Mujer"
+      # Esto se muestra SOLO para Aceros
+      - label: "Categoría"
         name: "category_mujer"
         widget: "select"
         options: ["Anillos", "Pulseras", "Collares", "Aritos", "Cintos", "Kids"]
         condition: { field: "section", value: ["Acero Blanco", "Acero Dorado"] }
 
-      # CATEGORÍA HOMBRE: Solo aparece si eliges Hombres
-      - label: "Categoría Hombre"
+      # Esto se muestra SOLO para Hombres
+      - label: "Categoría"
         name: "category_hombre"
         widget: "select"
         options: ["Todo Hombres"]
