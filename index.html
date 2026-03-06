@@ -856,19 +856,21 @@ async function filtrarCategoria(categoria, elemento) {
                 const res = await fetch(file.download_url);
                 const text = await res.text();
                 
-                // Extraer datos con Regex
-                const title = text.match(/title:\s*"(.*)"|title:\s*(.*)/)?.[1] || text.match(/title:\s*(.*)/)?.[1];
-                const price = text.match(/price:\s*(.*)/)?.[1];
-                const image = text.match(/image:\s*"(.*)"|image:\s*(.*)/)?.[1] || text.match(/image:\s*(.*)/)?.[1];
-                const section = text.match(/section:\s*"(.*)"|section:\s*(.*)/)?.[1] || text.match(/section:\s*(.*)/)?.[1];
-                const category = text.match(/category:\s*"(.*)"|category:\s*(.*)/)?.[1] || text.match(/category:\s*(.*)/)?.[1];
+const title = text.match(/title:\s*"(.*)"|title:\s*(.*)/)?.[1] || text.match(/title:\s*(.*)/)?.[1];
+const price = text.match(/price:\s*(.*)/)?.[1];
+const image = text.match(/image:\s*"(.*)"|image:\s*(.*)/)?.[1] || text.match(/image:\s*(.*)/)?.[1];
+const section = text.match(/section:\s*"(.*)"|section:\s*(.*)/)?.[1] || text.match(/section:\s*(.*)/)?.[1];
 
-                const secLimpia = section?.replace(/"/g, '').trim();
-                const catLimpia = category?.replace(/"/g, '').trim();
+// LEER AMBOS POSIBLES CAMPOS
+const category = text.match(/category:\s*"(.*)"|category:\s*(.*)/)?.[1];
+const categoryMen = text.match(/category_men:\s*"(.*)"|category_men:\s*(.*)/)?.[1];
 
-                // Lógica de filtrado
-                const coincideSeccion = secLimpia === tipoActual;
-                const coincideCategoria = (tipoActual === 'Hombres') || (catLimpia === categoria);
+const secLimpia = section?.replace(/"/g, '').trim();
+const catLimpia = (category || categoryMen)?.replace(/"/g, '').trim(); // Usa cualquiera de los dos que encuentre
+
+// Lógica de filtrado
+const coincideSeccion = secLimpia === tipoActual;
+const coincideCategoria = (tipoActual === 'Hombres') || (catLimpia === categoria);
 
                 if (coincideSeccion && coincideCategoria) {
                     count++;
