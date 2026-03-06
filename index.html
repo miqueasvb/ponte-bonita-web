@@ -779,14 +779,22 @@ function abrirGaleria(tipo) {
     const seccionCatalogo = document.getElementById('pb-catalogo');
     if(seccionCatalogo) window.scrollTo({ top: seccionCatalogo.offsetTop - 80, behavior: 'smooth' });
     
-    // Si es hombres, filtramos por cualquier cosa (porque mostramos todo)
-    filtrarCategoria(tipoActual === 'Hombres' ? 'Cualquiera' : 'Anillos', tipoActual === 'Hombres' ? null : document.querySelector('.pb-tab-btn'));
+    // Si es hombres, mostramos todo. Si no, empezamos en Anillos.
+    if(tipoActual === 'Hombres') {
+        filtrarCategoria('Todo Hombres', null);
+    } else {
+        filtrarCategoria('Anillos', document.querySelector('.pb-tab-btn'));
+    }
 }
 
 function cambiarMaterial(nuevoMaterial) {
     tipoActual = nuevoMaterial;
     actualizarBotonesMaterial();
-    filtrarCategoria(tipoActual === 'Hombres' ? 'Cualquiera' : 'Anillos', tipoActual === 'Hombres' ? null : document.querySelector('.pb-tab-btn'));
+    if(tipoActual === 'Hombres') {
+        filtrarCategoria('Todo Hombres', null);
+    } else {
+        filtrarCategoria('Anillos', document.querySelector('.pb-tab-btn'));
+    }
 }
 
 function actualizarBotonesMaterial() {
@@ -822,36 +830,48 @@ async function filtrarCategoria(categoria, elemento) {
                 const res = await fetch(file.download_url);
                 const text = await res.text();
                 
-                const title = (text.match(/title:\s*"(.*)"/)?.[1] || text.match(/title:\s*(.*)/)?.[1])?.trim();
-                const price = text.match(/price:\s*(.*)/)?.[1]?.trim();
-                const image = (text.match(/image:\s*"(.*)"/)?.[1] || text.match(/image:\s*(.*)/)?.[1])?.trim();
-                const section = (text.match(/section:\s*"(.*)"/)?.[1] || text.match(/section:\s*(.*)/)?.[1])?.trim();
-                const category = (text.match(/category:\s*"(.*)"/)?.[1] || text.match(/category:\s*(.*)/)?.[1])?.trim();
+                // EXTRACCIÓN MEJORADA: Busca la línea exacta que empieza con el campo
+                const lines = text.split('\n');
+                let productData = {};
+                lines.forEach(line => {
+                    if(line.startsWith('title:')) productData.title = line.replace('title:', '').replace(/"/g, '').trim();
+                    if(line.startsWith('price:')) productData.price = line.replace('price:', '').replace(/"/g, '').trim();
+                    if(line.startsWith('image:')) productData.image = line.replace('image:', '').replace(/"/g, '').trim();
+                    if(line.startsWith('section:')) productData.section = line.replace('section:', '').replace(/"/g, '').trim();
+                    if(line.startsWith('category:')) productData.category = line.replace('category:', '').replace(/"/g, '').trim();
+                });
 
-                // LÓGICA CLAVE: Si la sección coincide y (es Hombre O coincide la categoría)
-                if (section === tipoActual) {
-                    if (tipoActual === 'Hombres' || category === categoria) {
-                        count++;
-                        html += `
-                            <div class="pb-card-joya">
-                                <div class="pb-card-img"><img src="${image}" alt="${title}"></div>
-                                <div class="pb-card-info">
-                                    <span class="pb-tag">${tipoActual}</span>
-                                    <h4>${title}</h4>
-                                    <p class="pb-precio">$${price}</p>
-                                    <a href="https://wa.me/5493644247351?text=Hola Barbi! Me interesa: ${title} (${tipoActual})" class="pb-btn-comprar" target="_blank">Consultar</a>
-                                </div>
-                            </div>`;
-                    }
+                // FILTRADO ESTRICTO
+                const coincideSeccion = productData.section === tipoActual;
+                // Si es Hombres mostramos todo lo que sea sección Hombres. 
+                // Si es Acero, comparamos la categoría exacta.
+                const coincideCategoria = (tipoActual === 'Hombres') || (productData.category === categoria);
+
+                if (coincideSeccion && coincideCategoria) {
+                    count++;
+                    html += `
+                        <div class="pb-card-joya">
+                            <div class="pb-card-img"><img src="${productData.image}" alt="${productData.title}"></div>
+                            <div class="pb-card-info">
+                                <span class="pb-tag">${tipoActual}</span>
+                                <h4>${productData.title}</h4>
+                                <p class="pb-precio">$${productData.price}</p>
+                                <a href="https://wa.me/5493644247351?text=Hola Barbi! Me interesa: ${productData.title} (${tipoActual})" class="pb-btn-comprar" target="_blank">Consultar</a>
+                            </div>
+                        </div>`;
                 }
             }
         }
         contenedor.innerHTML = count === 0 ? `<p style="grid-column: 1/-1; text-align:center; padding:50px;">No hay productos aquí todavía.</p>` : html;
-    } catch (e) { contenedor.innerHTML = `<p style="grid-column: 1/-1; text-align:center; padding:50px;">Error al cargar.</p>`; }
+    } catch (e) { 
+        contenedor.innerHTML = `<p style="grid-column: 1/-1; text-align:center; padding:50px;">Error al cargar.</p>`; 
+    }
     contenedor.style.opacity = "1";
 }
 
-document.addEventListener('DOMContentLoaded', () => { filtrarCategoria('Anillos', document.querySelector('.pb-tab-btn')); });
+document.addEventListener('DOMContentLoaded', () => { 
+    filtrarCategoria('Anillos', document.querySelector('.pb-tab-btn')); 
+});
 </script>
 
 
