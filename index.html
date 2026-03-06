@@ -622,9 +622,10 @@ Porque mi lema es simple: cuando te ves bien, te sentís mejor. 💕
 
 <section id="pb-catalogo" class="pb-catalogo-container">
     <div class="container">
-        <div style="display: flex; justify-content: center; gap: 10px; margin-bottom: 25px;">
+        <div style="display: flex; justify-content: center; gap: 10px; margin-bottom: 25px; flex-wrap: wrap;">
             <button class="pb-material-btn active" id="btn-blanco" onclick="cambiarMaterial('Acero Blanco')">Acero Blanco</button>
             <button class="pb-material-btn" id="btn-dorado" onclick="cambiarMaterial('Acero Dorado')">Acero Dorado</button>
+            <button class="pb-material-btn" id="btn-hombres" onclick="cambiarMaterial('Hombres')">Hombres</button>
         </div>
 
         <div class="pb-tabs-wrapper">
@@ -635,12 +636,10 @@ Porque mi lema es simple: cuando te ves bien, te sentís mejor. 💕
                 <button class="pb-tab-btn" onclick="filtrarCategoria('Aritos', this)">Aritos</button>
                 <button class="pb-tab-btn" onclick="filtrarCategoria('Cintos', this)">Cintos</button>
                 <button class="pb-tab-btn" onclick="filtrarCategoria('Kids', this)">Kids</button>
-                <button class="pb-tab-btn" onclick="filtrarCategoria('Hombres', this)">Hombres</button>
             </div>
         </div>
 
-        <div id="pb-grid-productos" class="pb-productos-grid">
-            </div>
+        <div id="pb-grid-productos" class="pb-productos-grid"></div>
     </div>
 </section>
 
