@@ -1,7 +1,7 @@
 ---
-title: Pulsera plateada diamante
-price: "10000"
-image: assets/images/productos/474367.jpg
-section: Acero Blanco
+title: Pulsera cola de ratón dorada
+price: "5000"
+image: assets/images/productos/474387.jpg
+section: Acero Dorado
 category: Pulseras
 ---
