@@ -1,7 +1,7 @@
 ---
-title: "Pulsera plateada strass celeste "
+title: Pulsera plateada strass
 price: "4000"
-image: assets/images/productos/474214.png
+image: assets/images/productos/474213.png
 section: Acero Blanco
 category: Pulseras
 ---
