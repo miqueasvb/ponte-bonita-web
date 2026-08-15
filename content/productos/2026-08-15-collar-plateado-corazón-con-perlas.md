@@ -1,7 +1,7 @@
 ---
-title: Collar plateado corazón con perlas
+title: "Collar plateado doble corazón "
 price: "12000"
-image: assets/images/productos/475237.jpg
+image: assets/images/productos/475241.jpg
 section: Acero Blanco
 category: Collares
 ---
