@@ -1,7 +1,7 @@
 ---
-title: Pulsera estilo pandora
-price: "10000"
-image: assets/images/productos/475861.png
+title: "Anillo aurora "
+price: "6000"
+image: assets/images/productos/475862.png
 section: Acero Blanco
-category: Pulseras
+category: Anillos
 ---
