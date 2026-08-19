@@ -1,7 +1,7 @@
 ---
-title: Aro dorado calado
-price: "6000"
-image: assets/images/productos/479790.png
+title: Aro dorado colgante strass
+price: "7000"
+image: assets/images/productos/479791.png
 section: Acero Dorado
 category: Aritos
 ---
