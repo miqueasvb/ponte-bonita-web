@@ -1,7 +1,7 @@
 ---
-title: Collar doble esfera
-price: "12000"
-image: assets/images/productos/482902.png
+title: Collar elegance
+price: "14000"
+image: assets/images/productos/482903.png
 section: Acero Dorado
 category: Collares
 ---
