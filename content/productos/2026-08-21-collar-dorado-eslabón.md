@@ -1,7 +1,7 @@
 ---
-title: "Collar dorado eslabón "
+title: Collar dorado vintage
 price: "12000"
-image: assets/images/productos/482904.png
+image: assets/images/productos/482905.png
 section: Acero Dorado
 category: Collares
 ---
