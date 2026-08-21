@@ -1,7 +1,7 @@
 ---
-title: "Collar dorado esmeralda "
+title: Collar perla chic
 price: "14000"
-image: assets/images/productos/482906.png
+image: assets/images/productos/482909.png
 section: Acero Dorado
 category: Collares
 ---
