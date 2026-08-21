@@ -1,7 +1,7 @@
 ---
-title: Colar esfera cristal
-price: "14000"
-image: assets/images/productos/482899.png
+title: Collar dorado estilo gota
+price: "10000"
+image: assets/images/productos/482900.png
 section: Acero Dorado
 category: Collares
 ---
